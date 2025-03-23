@@ -8,6 +8,7 @@ const path = require('path');
 const pg = require('pg')
 const router = require('./router/index')
 const client = require('./config/db');
+const errorMiddleware = require('./middleware/error-middleware')
 
 const PORT =process.env.PORT || 5000
 const app = express()
@@ -19,13 +20,20 @@ let games =[]
 let gamePlayers =[]
 let gameID = 0
 
-app.use(express.json())
 app.use(cookieParser())
-app.use(cors())
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}))
+
+app.use(cookieParser())
+app.use(express.json())
 app.use('/api', router)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'scripts')));
 app.use("/client", express.static(path.dirname(__dirname)+ "/client"))
+app.use(errorMiddleware)
 
 
 app.get("/", (request, response) =>{

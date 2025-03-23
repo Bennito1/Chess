@@ -1,0 +1,496 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+html{
+    background-color: #192434;
+    /*background-image: url(../../client/images/jop_dimon.jpg);*/
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/*video{
+    position: absolute;
+}*/
+
+body{
+    width: 100%;
+    height: 1310px;
+    position: relative;
+    display: flex;
+    overflow-x: hidden;
+}
+
+.h1{
+    position: absolute;
+    top: auto;
+    left: 1160px;
+    color:rgb(5, 138, 200);
+    font-size: 300%;
+}
+
+.profile{
+    position: absolute;
+    border: 2px solid snow;
+    border-radius: 10%;
+    height: 125px;
+    width: 500px;
+    background-color: aqua;
+    margin: 60px;
+    margin-left: 30px;
+    display: grid; 
+    place-items: center;
+}
+
+.show_profill{
+    position: absolute;
+    background-image: url(../images/poni_icon.png);
+    background-size: 80px 80px;
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgb(0, 0, 0);
+    object-fit: fill;
+    border-radius: 50%;
+    left: 0;
+    margin: 20.5px;
+}
+
+.user_name{
+    position: absolute;
+    width: 308px;
+    height: 80px;
+    font-size: 22px;
+    left: 120px;
+    display: grid; 
+    place-items: center;
+}
+
+li{
+    list-style-type: none;
+}
+
+.but_chous{
+    position: absolute;
+    width:350px;
+    height: 100px;
+    background-color: aliceblue;
+    right: 0;
+    bottom: -30px;
+    margin: 40px;
+}
+
+.but_op_menu{
+    position: absolute;
+    width: 350px;
+    height: 100px;
+    background-color: aqua;
+    animation-name: my-animation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+.but_op_menu:hover{
+    position: absolute;
+    width: 350px;
+    height: 100px;
+    background-color: aqua;
+    animation-name: my-animation, grow;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+.but_chous.active{
+    animation-name: but_pl_active;
+    animation-duration: 0.5s;
+}
+
+.but_chous.posiv{
+    animation-name: but_pl_posiv;
+    animation-duration: 0.5s;
+}
+
+.but_cl_menu{
+    position: relative;
+    width: 350px;
+    height: 100px;
+    background-image: url(../images/arrow.png);
+    background: transparent;
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 700px;
+}
+
+.hidden{
+    display: none !important;
+}
+
+menu{
+    display: block;
+    position: absolute;
+    width: 550px;
+    height: 1250px;
+    background-color: antiquewhite;
+    right: 20px;
+    padding: 0;
+}
+
+menu.active{
+    animation-name: open_menu;
+    animation-duration: 0.5s;
+    right: 20px;
+}
+
+menu.posiv{
+    animation-name: clous_menu;
+    animation-duration: 0.5s;
+    right: 20px;
+}
+
+li{
+    position: relative;
+    width: 350px;
+    height: 100px;
+    border: 2px solid black;
+    text-align: center;
+    margin-left: 98px;
+    margin-top: 5px;
+    top: 60px;
+    display: grid; 
+    place-items: center;
+}
+
+.play_h{
+    position: relative;
+    width: 350px;
+    height: 100px;
+    background: transparent;
+}
+
+.game_search{
+    position: absolute;
+    background-color: rgb(0, 179, 255);
+    width: 350px;
+    height: 100px;
+    right: 0;
+    bottom: -30px;
+    margin: 40px;
+}
+
+.text_saerch{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 5px;
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.time_search{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 5px;
+    width: 250px;
+    height: 50px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.game_search.active{
+    animation-name: but_pl_posiv;
+    animation-duration: 1s;
+}
+
+@keyframes but_pl_active{
+    0%{
+        right: 0px;
+    }
+
+    100%{
+        right: -400px;
+    }
+}
+
+@keyframes but_pl_posiv{
+    0%{
+        right: -400px;
+    }
+
+    100%{
+        right: 0px;
+    }
+}
+
+@keyframes open_menu {
+    0%{
+        width: 0;
+        height: 1250px;
+    }
+    
+    100%{
+        height: 1250px;
+        width: 550px;
+    }
+    
+}
+
+@keyframes clous_menu {
+    0%{
+        height: 1250px;
+        width: 550px;
+    }
+
+    100%{
+        height: 1250px;
+        width: 0px;
+    }
+    
+}
+
+@keyframes my-animation {
+    0% {
+        background-color: rgb(4, 255, 0);
+    }
+    10% {
+        background-color: rgb(4, 255, 20);
+    }
+    20% {
+        background-color: rgb(4, 255, 40);
+    }
+    30% {
+        background-color: rgb(4, 255, 60);
+    }
+    40% {
+        background-color: rgb(4, 255, 80);
+    }
+    50% {
+        background-color: rgb(4, 255, 100);
+    }
+    60% {
+        background-color: rgb(4, 255, 80);
+    }
+    70% {
+        background-color: rgb(4, 255, 60);
+    }
+    80% {
+        background-color: rgb(4, 255, 20);
+    }
+    90% {
+        background-color: rgb(4, 255, 10);
+    }
+    100% {
+        background-color: rgb(4, 255, 0);
+    }
+}
+
+@keyframes grow{
+    0%{
+        transition: steps(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1)
+    }   
+}
+
+    /* для hd монитора */
+@media (min-width: 768px) and (max-width: 1300px) {
+    .h1{
+        left: 565px;
+        font-size: 200%;
+    }
+
+    .profile{
+        height: 90px;
+        width: 300px;
+        margin: 20px;
+        display: grid; 
+        place-items: center;
+        
+    
+    }
+    
+    .show_profill{
+        background-size: 60px 60px;
+        width: 60px;
+        height: 60px;
+        margin: 20px;
+        top: 15px;
+        left: 12px;
+    
+    }
+    
+    li{
+        list-style-type: none;
+    }
+    
+    .but_chous{
+        width:200px;
+        height: 75px;
+        left: 1046.5px;
+        top: 490px;
+    }
+    
+    .but_op_menu{
+        width: 200px;
+        height: 75px;
+    }
+    
+    .but_op_menu:hover{
+        width: 200px;
+        height: 75px;
+    }
+
+    .but_cl_menu{
+        width: 200px;
+        height: 75px; 
+        right: -75px;
+        top: 215px;
+    
+    }
+    
+    menu{
+        width: 350px;
+        height: 540px;
+        right: 20px;
+    }
+    
+    li{
+        width: 200px;
+        height: 75px;
+    }
+    
+    .play_h{
+        width: 200px;
+        height: 75px;
+    }
+
+    
+}
+
+@media (min-width: 1301px) and (max-width: 1920px) {
+    .help{
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        border: 2px solid black;
+        background-color: aliceblue;
+        right: 0;
+    }
+    
+    body{
+        width: 100%;
+        height: 900px;
+        position: relative;
+    }
+    
+    .h1{
+        left: 44.5%;
+        font-size: 300%;
+    }
+
+    .profile{
+        height: 125px;
+        width: 400px;
+        margin: 32px;
+        margin-left: 18px;
+        display: grid; 
+        place-items: center;   
+    }
+    
+    .show_profill{
+
+        background-size: 70px 70px;
+        width: 70px;
+        height: 70px;
+        margin: 19px;    
+    }
+
+    .user_name{
+        width: 268px;
+        height: 80px;
+        left: 102px;
+        font-size: 150%;
+    }
+    
+    li{
+        list-style-type: none;
+    }
+    
+    .but_chous{
+        position: absolute;
+        width:250px;
+        height: 100px;
+    }
+    
+    .but_op_menu{
+        width: 250px;
+        height: 100px;
+    }
+    
+    .but_op_menu:hover{
+        width: 250px;
+        height: 100px;
+    }
+
+    .but_cl_menu{
+        width: 250px;
+        height: 100px; 
+        margin-left: 125px;
+        margin-top: 300px;  
+    }
+    
+    menu{
+        top: 9px;
+        width: 500px;
+        height: 850px;
+        right: 20px;
+    }
+    
+    li{
+        width: 250px;
+        height: 100px;
+        margin-left: 125px;
+    }
+    
+    .play_h{
+        width: 250px;
+        height: 100px;
+    }
+
+    @keyframes open_menu {
+        0%{
+            width: 0;
+            height: 850px;
+        }
+        
+        100%{
+            height: 850px;
+            width: 500px;
+        }
+        
+    }
+
+    @keyframes clous_menu {
+        0%{
+            height: 850px;
+            width: 500px;
+        }
+    
+        100%{
+            height: 850px;
+            width: 0px;
+        }
+        
+    }
+}

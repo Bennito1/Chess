@@ -16,7 +16,9 @@ get_main ='<menu id="svo"> <li class="menu"><span class="menu_runced">runced</sp
 function open_whindo(){
     $("#zv").html(get_main)
 }
-
+$("#profile").on("click", function(){
+    console.log("помошь")
+})
 function clous_whindo(){
     $("#svo").remove()
 }
