@@ -7,44 +7,12 @@ import MainForm from './componets/MainForm';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import ErrorForm from './componets/ErorForm'
 import GameForm from './componets/GameForm'
+import { mapStore } from './store/mapStore';
 
-
-interface MapContextType {
-    map: string[][];
-    setMap: React.Dispatch<React.SetStateAction<string[][]>>
-}
-
-interface MapProviderProps {
-    children: ReactNode
-}
-
-const MapContext = createContext<MapContextType | undefined>(undefined);
-
-export const MapProvider: FC<MapProviderProps> = ({ children }) => {
-    const [map, setMap] = useState<string[][]>([
-        ['l', 'k', 's', 'q', 'kr', 's', 'k', 'l'],
-        ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
-        ['0', '0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0', '0'],
-        ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-        ['L', 'K', 'S', 'Q', 'KR', 'S', 'K', 'L']
-    ]);
-
-    return (
-        <MapContext.Provider value={{ map, setMap }}>
-            {children}
-        </MapContext.Provider>
-    );
-};
+const MapContext = createContext(mapStore);
 
 export const useMapContext = () => {
-    const context = useContext(MapContext);
-    if (!context) {
-        throw new Error('useMapContext must be used within a MapProvider');
-    }
-    return context;
+    return useContext(MapContext)
 }
 
 const App: FC = ()=>{
@@ -70,9 +38,9 @@ const App: FC = ()=>{
         <Route path='*' element = {<ErrorForm/>}/>
         <Route path='/' element ={<MainForm/>}/>
         <Route path='/game' element={
-          <MapProvider>
+          <MapContext.Provider value={mapStore}>
             <GameForm/>
-          </MapProvider>}/>
+          </MapContext.Provider>}/>
       </Routes>
     </Router>
   )

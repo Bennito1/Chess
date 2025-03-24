@@ -17,6 +17,7 @@ const GameForm: FC = () => {
     const [stateVale, setVale] = useState<number[]>([])
 
     useEffect(() => {
+        setVale([])
         renderBoard()
     }, [map])
 
@@ -29,7 +30,6 @@ const GameForm: FC = () => {
                 {stateVale.includes(cord) && <ValeForm
                     cord = {stateVale[stateVale.indexOf(cord)-1] /10}
                     newId={cord} 
-                    map = {map}
                     />}
             </div>
         )
@@ -39,11 +39,24 @@ const GameForm: FC = () => {
     const getVale = (cord:number, figure:string, color:string) =>{
         if (figure =="p"){
             const returnVale = vale.pGo(map, cord, color);
-            if (JSON.stringify(stateVale) === JSON.stringify(returnVale)) { // Исправлено: сравнение массивов
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale)) {
                 return setVale([])
             } 
             return setVale(returnVale);
-            
+        }
+        if (figure =="k"){
+            const returnVale = vale.kGo(map, cord, color);
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale)) {
+                return setVale([])
+            } 
+            return setVale(returnVale);
+        }
+        if (figure =="s"){
+            const returnVale = vale.sGo(map, cord, color);
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale)) {
+                return setVale([])
+            } 
+            return setVale(returnVale);
         }
     }
 
@@ -64,6 +77,7 @@ const GameForm: FC = () => {
         )
     }
     const renderBoard = () =>{
+        console.log(map)
         const rows = []
         for(let y = 0; y<8; y++){
             const cells = []
@@ -71,7 +85,7 @@ const GameForm: FC = () => {
                 cells.push(spawnSqare(y, x))
             }
             rows.push(
-                <div key={y} className="board-row">
+                <div key={`${y}`} className="board-row">
                     {cells}
                 </div>
             );

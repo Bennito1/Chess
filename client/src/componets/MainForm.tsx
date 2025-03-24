@@ -4,24 +4,30 @@ import { observer } from 'mobx-react-lite';
 import "../styels/main_window.css"
 import { IUser } from "../models/user";
 import { Context } from "..";
+import LoginForm from "./loginForm";
 
 const MainForm: FC = () =>{
     const {store} = useContext(Context)
 
     const[menuHidden, setmNenuState] = useState(true)
     const[endTimeOit, setEndTimeOit] = useState(true)
+    const [showLoginForm, setShowLoginForm] = useState(false)
 
     function hiddenNo (){
         setEndTimeOit(false)
         setmNenuState(!menuHidden)
         setTimeout(() => {setEndTimeOit(true)}, 450)
     }
+
+    function login(){
+        setShowLoginForm(true)
+    }
     return(
         <div>
             <div className="profile">
-                <div className="user_name">{store.isAuth ? store.user.username : <button>Войти</button>}</div>
+                <div className="user_name">{store.isAuth ? store.user.username : <button onClick={() => login()}>Войти</button>}</div>
                 <div className="">mmr: {store.isAuth ? store.user.mmr : ''}</div>
-            </div>
+            </div> 
             <div className="show_profill"> </div>  
             <menu className= {menuHidden ? ( endTimeOit ? "hidden" : "posiv" ): (endTimeOit ? "" : "active" )}>
                 <li className="menu"><span className="menu_runced">menu1</span></li>
@@ -35,6 +41,9 @@ const MainForm: FC = () =>{
             <div className="game_search hidden">
                 <div className="text_saerch">Game search</div>
                 <div className="time_search">00:00</div>
+            </div>
+            <div className={showLoginForm? ``:`hidden`}>
+                <LoginForm/>
             </div>
 
             <div id="zv"></div>
