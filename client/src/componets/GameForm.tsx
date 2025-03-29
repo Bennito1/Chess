@@ -5,21 +5,64 @@ import FigureForm from "./FigureForm";
 import Change from "../gameScripts/change";
 import Vale from "../gameScripts/vale";
 import ValeForm from "./ValeForm";
-import { useMapContext } from "../App";
-
+import { socket, useMapContext } from "../App";
+import TakeForm from "./TakeForm";
+import { mapStore } from "../store/mapStore";
 
 const change = new Change
 const vale = new Vale
+let getID = false
 
-const GameForm: FC = () => {
-    const {map, setMap} = useMapContext()
 
+const GameForm: FC = () => {   
+
+
+    const {map, ID, gameColor, setMap, setGameColor} = useMapContext()
     const [stateVale, setVale] = useState<number[]>([])
+    const [stateTake, setTake] = useState<number[]>([])
+    const [moveColor, setMoveColor] = useState<string>("white")
 
     useEffect(() => {
-        setVale([])
-        renderBoard()
-    }, [map])
+        if (!mapStore.getID) {
+            socket.emit('idGame');
+        }
+
+        const handleGiveID = (gameID: number) => {
+            mapStore.setGetId(true) 
+            mapStore.setID(gameID)
+            socket.emit('giveColor', ID)
+        };
+
+        const handleBoardState = (newMap: string[][]) => {
+            setMap(newMap)
+        };
+
+        const handleGameColor = (color: string) => {
+            setGameColor(color)
+        };
+
+        const handleHodColor = (color: string) => {
+            setMoveColor(color)
+        };
+
+        socket.on('giveID', handleGiveID);
+        socket.on('boardState', handleBoardState);
+        socket.on('gameColor', handleGameColor);
+        socket.on('hodColor', handleHodColor);
+
+        return () => {
+            socket.off('giveID', handleGiveID);
+            socket.off('boardState', handleBoardState);
+            socket.off('gameColor', handleGameColor);
+            socket.off('hodColor', handleHodColor);
+        };
+    }, [ID, setMap]);
+
+    useEffect(() => {
+        setTake([]);
+        setVale([]);
+        renderBoard();
+    }, [map]);
 
     const spawnSqare= (y:number, x:number) =>{
         const cord = (y+1)*10 + (x+1)
@@ -31,32 +74,108 @@ const GameForm: FC = () => {
                     cord = {stateVale[stateVale.indexOf(cord)-1] /10}
                     newId={cord} 
                     />}
+                {stateTake.includes(cord) && <TakeForm
+                    cord = {stateTake[stateTake.indexOf(cord)-1] /10}
+                    newId={cord} 
+                    />}
             </div>
         )
     }
     
 
     const getVale = (cord:number, figure:string, color:string) =>{
+        if (color != gameColor || color != moveColor){
+            return
+        }
         if (figure =="p"){
             const returnVale = vale.pGo(map, cord, color);
-            if (JSON.stringify(stateVale) === JSON.stringify(returnVale)) {
-                return setVale([])
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale.returnVale)) {
+                setVale([])
+            }
+            else{
+                setVale(returnVale.returnVale) 
             } 
-            return setVale(returnVale);
+            if (JSON.stringify(stateTake) === JSON.stringify(returnVale.take)) {
+                setTake([])
+            }
+            else{
+                setTake(returnVale.take)
+            }
         }
         if (figure =="k"){
             const returnVale = vale.kGo(map, cord, color);
-            if (JSON.stringify(stateVale) === JSON.stringify(returnVale)) {
-                return setVale([])
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale.returnVale)) {
+                setVale([])
+            }
+            else{
+                setVale(returnVale.returnVale) 
             } 
-            return setVale(returnVale);
+            if (JSON.stringify(stateTake) === JSON.stringify(returnVale.take)) {
+                setTake([])
+            }
+            else{
+                setTake(returnVale.take)
+            }
         }
         if (figure =="s"){
             const returnVale = vale.sGo(map, cord, color);
-            if (JSON.stringify(stateVale) === JSON.stringify(returnVale)) {
-                return setVale([])
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale.returnVale)) {
+                setVale([])
+            }
+            else{
+                setVale(returnVale.returnVale) 
             } 
-            return setVale(returnVale);
+            if (JSON.stringify(stateTake) === JSON.stringify(returnVale.take)) {
+                setTake([])
+            }
+            else{
+                setTake(returnVale.take)
+            }
+        }
+        if (figure =="l"){
+            const returnVale = vale.lGo(map, cord, color);
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale.returnVale)) {
+                setVale([])
+            }
+            else{
+                setVale(returnVale.returnVale) 
+            } 
+            if (JSON.stringify(stateTake) === JSON.stringify(returnVale.take)) {
+                setTake([])
+            }
+            else{
+                setTake(returnVale.take)
+            }
+        }
+        if (figure =="kr"){
+            const returnVale = vale.krGo(map, cord, color);
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale.returnVale)) {
+                setVale([])
+            }
+            else{
+                setVale(returnVale.returnVale) 
+            } 
+            if (JSON.stringify(stateTake) === JSON.stringify(returnVale.take)) {
+                setTake([])
+            }
+            else{
+                setTake(returnVale.take)
+            }
+        }
+        if (figure =="q"){
+            const returnVale = vale.qGo(map, cord, color);
+            if (JSON.stringify(stateVale) === JSON.stringify(returnVale.returnVale)) {
+                setVale([])
+            }
+            else{
+                setVale(returnVale.returnVale) 
+            } 
+            if (JSON.stringify(stateTake) === JSON.stringify(returnVale.take)) {
+                setTake([])
+            }
+            else{
+                setTake(returnVale.take)
+            }
         }
     }
 
@@ -66,7 +185,7 @@ const GameForm: FC = () => {
         }
         return(
             <button id ={`${cord}`} 
-                className ={`figure ${change.changeFigure(figure)} ${change.changeColorFigure(figure)}`} 
+                className ={`figure ${change.changeFigure(figure)} ${change.changeColorFigure(figure)} size_figure`} 
                 onClick={() =>getVale(cord, change.changeFigure(figure), change.changeColorFigure(figure))}
             >
                 <FigureForm

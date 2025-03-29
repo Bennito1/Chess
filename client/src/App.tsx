@@ -8,6 +8,10 @@ import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import ErrorForm from './componets/ErorForm'
 import GameForm from './componets/GameForm'
 import { mapStore } from './store/mapStore';
+import { io } from "socket.io-client";
+const URL = 'http://25.7.15.253:500'
+
+export const socket = io(`${URL}`)
 
 const MapContext = createContext(mapStore);
 

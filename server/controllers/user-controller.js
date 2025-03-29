@@ -47,7 +47,6 @@ class UserController{
     async refresh(req, res, next){
         try{
             const refreshToken = req.body.token
-            console.log(refreshToken)
             const userData = await userService.refresh(refreshToken)
             return res.json(userData);
         } catch(e){

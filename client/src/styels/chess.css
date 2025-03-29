@@ -61,14 +61,46 @@
     transform: translateY(-5px);
 }
 
+.vale_size{
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background: none;
+    border: 0px;
+}
+.vale_size:hover{
+    background-color: rgba(0, 255, 255, 0.471);
+    border: rgba(0, 102, 255, 0.541) solid; 
+}
 
 .vale{
-
-    justify-content: center;
+    margin: auto;
     width: 20px;
     height: 20px; 
     background-color: #365054; 
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    border: 0px;
+}
+.take_size{
+    position: absolute;
     display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background: none;
+    border: 0px;
+}
+.take_size:hover{
+    background-color: #ec244f45;
+    border: rgba(200, 0, 53, 0.541) solid;
+}
+.take{
+    margin: auto;
+    width: 20px;
+    height: 20px; 
+    background-color: #e81f4a; 
     border-radius: 50%;
     align-items: center;
     transition: background-color 0.3s ease;
@@ -143,15 +175,14 @@ html{
 
 .board{
     position: absolute;           
-    width: 840px;
-    height: 840px;
+    width: 800px;
+    height: 800px;
     border: 20px solid rgb(45, 0, 40);
     left: 500px;
     top: 250px;
 }
 
 .sqare{
-
     float: left;
     width: 100px;
     height: 100px;
@@ -162,6 +193,7 @@ html{
 }
 
 .figure{
+    position: 2;
     width: 87.5px; 
     height: 87.5px;
     display: flex;
@@ -351,8 +383,8 @@ body_but{
 @media (min-width: 768px) and (max-width: 1920px) {
     .board{ 
         border: 10px solid rgb(45, 0, 40);        
-        width: 420px;
-        height: 420px;
+        width: 400px;
+        height: 400px;
         left: 250px;
         top: 100px;
     }
@@ -366,6 +398,12 @@ body_but{
 
     .size_figure{
     height: 43.75px;
-}
+    }
+
+    .vale_size{
+        width: 50px;
+        height: 50px;
+        background: none;
+    }
     
 }   

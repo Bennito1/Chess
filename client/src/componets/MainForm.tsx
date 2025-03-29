@@ -5,6 +5,7 @@ import "../styels/main_window.css"
 import { IUser } from "../models/user";
 import { Context } from "..";
 import LoginForm from "./loginForm";
+import { socket } from "../App";
 
 const MainForm: FC = () =>{
     const {store} = useContext(Context)
@@ -22,6 +23,15 @@ const MainForm: FC = () =>{
     function login(){
         setShowLoginForm(true)
     }
+
+    function startGame(){
+        const id = socket.id
+        socket.emit('playerReady', id)
+    }
+    socket.on('startGame', () => {
+        window.location.href = '/game';
+    })
+    
     return(
         <div>
             <div className="profile">
@@ -29,19 +39,22 @@ const MainForm: FC = () =>{
                 <div className="">mmr: {store.isAuth ? store.user.mmr : ''}</div>
             </div> 
             <div className="show_profill"> </div>  
-            <menu className= {menuHidden ? ( endTimeOit ? "hidden" : "posiv" ): (endTimeOit ? "" : "active" )}>
-                <li className="menu"><span className="menu_runced">menu1</span></li>
-                <li className ="menu"><span className="menu_unranced">menu2</span></li>
-                <li className ="menu"><span className="menu_help"><button className="play_h">play</button></span></li>
-                <button className="but_cl_menu" onClick={hiddenNo}>Назад</button>
+            <menu className= {menuHidden ? ( endTimeOit ? "hidden" : "posiv" ) : (endTimeOit ? "active" : "active" )}>
+                <li className="menu="><span className="menu_runced">menu1</span></li>
+                <li className="menu="><span className="menu_unranced">menu2</span></li>
+                <button className="play_h" onClick={startGame}>play</button>
+                <button className="but_cl_menu" onClick={() => hiddenNo()}>Назад</button>
             </menu>
+
             <div className={menuHidden ? ( endTimeOit ? "but_chous" : "but_chous posiv" ): (endTimeOit ? "hidden" : "but_chous active" )}>
                 <button className="but_op_menu" onClick={hiddenNo}>ИГРАТЬ</button>
             </div>
+
             <div className="game_search hidden">
                 <div className="text_saerch">Game search</div>
                 <div className="time_search">00:00</div>
             </div>
+
             <div className={showLoginForm? ``:`hidden`}>
                 <LoginForm/>
             </div>

@@ -12,6 +12,12 @@ class MapStore{
         ['L', 'K', 'S', 'Q', 'KR', 'S', 'K', 'L']
     ]
 
+    getID:boolean = false
+
+    ID:number = 0
+
+    gameColor:string = 'none'
+
     constructor() {
         makeAutoObservable(this)
     }
@@ -19,6 +25,18 @@ class MapStore{
     setMap(newMap:string[][]){
        this.map = newMap
     }
+
+    setGetId(GetId:boolean){
+        this.getID = GetId
+     }
+
+     setID(newID:number){
+        this.ID = newID
+     }
+
+     setGameColor(newColor:string){
+        this.gameColor = newColor
+     }
 }
 
 export const mapStore = new MapStore()

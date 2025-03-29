@@ -10,24 +10,28 @@ const router = require('./router/index')
 const client = require('./config/db');
 const errorMiddleware = require('./middleware/error-middleware')
 
+
 const PORT =process.env.PORT || 5000
 const app = express()
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}))
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+})
+
 let players = []
 let games =[]
 
 let gamePlayers =[]
 let gameID = 0
 
-app.use(cookieParser())
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}))
-
-app.use(cookieParser())
 app.use(express.json())
 app.use('/api', router)
 app.use(express.static(path.join(__dirname, 'public')));
@@ -42,6 +46,7 @@ app.get("/", (request, response) =>{
 app.get("/game", (request, response) =>{
     response.sendFile(path.join(__dirname, 'public', "game.html" ))
 })
+
 io.on('connection', (socket) => {
     socket.on('playerReady', id =>{
         players.push(socket)

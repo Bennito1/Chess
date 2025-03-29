@@ -3,6 +3,7 @@ import {AuthResponse} from "../models/response/authResponse"
 axios.defaults.withCredentials = true
 export const API_URL = 'http://25.7.15.253:500/api';
 
+
 const $api = axios.create({
     withCredentials: true,
     baseURL: API_URL,
