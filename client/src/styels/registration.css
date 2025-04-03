@@ -1,0 +1,87 @@
+.hiden{
+    display: none !important;
+}
+
+.MainReg{
+    width: 600px;
+    height: 800px;
+    background-color: aqua;
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}
+
+.enter_login{
+    width: 600px;
+    height: 600px;
+    background-color: azure;
+    position: relative;
+}
+
+.li_1{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    margin-left: 175px;
+    margin-top: 100px;
+}
+
+.usORem_name{
+    background-color: blue;
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    text-align: center;
+    
+}
+
+.li_2{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    margin-left: 175px;
+    margin-top: 225px;
+}
+
+.password_bloc{
+    background-color: blue;
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    text-align: center;
+}
+
+.li_3{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    margin-left: 175px;
+    margin-top: 350px;
+}
+
+.login{
+    background-color: blue;
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    text-align: center;
+}
+
+.reg_log{
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    top: 600px;
+    background-color: black;
+}
+
+.but_reg{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    top: 25px;
+}
+

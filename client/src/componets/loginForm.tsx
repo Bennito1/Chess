@@ -9,6 +9,9 @@ const LoginForm: FC = () => {
     const [password, setPassword] = useState<string>('')
     const [user, setUser] = useState<string>('')
     const {store} = useContext(Context)
+    if (store.isAuth == true){
+        return(null)
+    }
     return (
         <div>
             <input
@@ -47,4 +50,4 @@ const LoginForm: FC = () => {
     );
 };
 
-export default observer (LoginForm);
+export default observer (LoginForm)

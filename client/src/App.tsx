@@ -9,6 +9,7 @@ import ErrorForm from './componets/ErorForm'
 import GameForm from './componets/GameForm'
 import { mapStore } from './store/mapStore';
 import { io } from "socket.io-client";
+import RegMainForm from './componets/RegMainForm';
 const URL = 'http://25.7.15.253:500'
 
 export const socket = io(`${URL}`)
@@ -39,6 +40,7 @@ const App: FC = ()=>{
       <nav>
       </nav>
       <Routes>
+      <Route path='/reg' element = {<RegMainForm/>}/>
         <Route path='*' element = {<ErrorForm/>}/>
         <Route path='/' element ={<MainForm/>}/>
         <Route path='/game' element={

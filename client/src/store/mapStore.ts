@@ -18,9 +18,30 @@ class MapStore{
 
     gameColor:string = 'none'
 
+    enemyColor:string = 'none'
+
+    moveColor:string = 'white'
+
+    L_leftMove:boolean = false
+    L_rightMove:boolean = false
+    K_Move:boolean = false
+
+
     constructor() {
         makeAutoObservable(this)
     }
+
+    setLleftmove(GetId:boolean){
+        this.L_leftMove = GetId
+     }
+
+     setLRightmove(GetId:boolean){
+        this.L_leftMove = GetId
+     }
+
+     setKmove(GetId:boolean){
+        this.L_leftMove = GetId
+     }
 
     setMap(newMap:string[][]){
        this.map = newMap
@@ -29,6 +50,7 @@ class MapStore{
     setGetId(GetId:boolean){
         this.getID = GetId
      }
+     
 
      setID(newID:number){
         this.ID = newID
@@ -36,6 +58,16 @@ class MapStore{
 
      setGameColor(newColor:string){
         this.gameColor = newColor
+        if (newColor == "white"){
+            this.enemyColor = "black"
+        }
+        else{
+            this.enemyColor = "white"
+        }
+     }
+
+     setMoveColor(newColor:string){
+      this.moveColor = newColor
      }
 }
 

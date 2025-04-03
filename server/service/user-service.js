@@ -29,7 +29,7 @@ class UserService{
             isActivated: createdUser.isactivated,
             mmr: createdUser.mmr
         }
-        const tokens = tokenServic.generateToken(plainUsers)
+        const tokens = tokenServic.generateToken(user)
         await tokenServic.saveToken(user.username, tokens.refreshToken)
         return{
             ...tokens,

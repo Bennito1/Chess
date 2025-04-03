@@ -21,7 +21,7 @@ export default class AuthService {
         try {
             const response = await $api.post<AuthResponse>('/registration', { username, email, password });
             localStorage.setItem('accessToken', response.data.accessToken)
-            localStorage.setItem('refreshToken', response.data.refreshToken) // Сохраняем токен после успешной регистрации
+            localStorage.setItem('refreshToken', response.data.refreshToken) 
             return response;
         } catch (error) {
             console.error('Ошибка при регистрации:', error);

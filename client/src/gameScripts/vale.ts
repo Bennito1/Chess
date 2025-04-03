@@ -1,6 +1,9 @@
+import { mapStore } from "../store/mapStore"
 import Change from "./change"
+import Check from "./check"
 
 const change = new Change
+const check = new Check
 
 class Vale{
     pGo(map:string[][], cord:number, color:string){
@@ -11,38 +14,54 @@ class Vale{
         if (color == 'white') {
             if (map[y - 1][x] == '0' ) {
                 const newId = cord - 10
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             if (y == 6 && map[y - 1][x] == '0' && map[y - 2][x] == '0' ) {
                 const newId = cord - 20
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             if (x > 0 && map[y - 1][x - 1] != '0' && change.changeColorFigure(map[y - 1][x - 1]) == 'black')  {
-                const newId = cord - 11;
-                take.push(cord *10, newId)
+                const newId = cord - 11
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
             if (x < 7 && map[y - 1][x + 1] != '0' && change.changeColorFigure(map[y - 1][x + 1]) == 'black') {
-                const newId = cord - 9;
-                take.push(cord *10, newId)
+                const newId = cord - 9
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
             return {returnVale, 
                 take}
         }
         if (map[y + 1][x] == '0' ) {
             const newId = (y+1)*10 + x+1 + 10;
-            returnVale.push(cord *10, newId)
+            if(!check.imit(newId, cord)){
+                returnVale.push(cord *10, newId)
+            }
         }
         if (y == 1 && map[y + 1][x] == '0' && map[y + 2][x] == '0') {
             const newId = (y+1)*10 + x+1 + 20;
-            returnVale.push(cord *10, newId)
+            if(!check.imit(newId, cord)){
+                returnVale.push(cord *10, newId)
+            }
         }
         if (x > 0 && map[y + 1][x - 1] != '0' && change.changeColorFigure(map[y + 1][x - 1]) == 'white') {
             const newId = (y+1)*10 + x+1 + 9;
-            take.push(cord *10, newId)
+            if(!check.imit(newId, cord)){
+                take.push(cord *10, newId)
+            }
         }
         if (x < 7 && map[y + 1][x + 1] != '0' && change.changeColorFigure(map[y + 1][x + 1]) == 'white') {
             const newId =(y+1)*10 + x+1 + 11;
-            take.push(cord *10, newId)
+            if(!check.imit(newId, cord)){
+                take.push(cord *10, newId)
+            }
         }
         return {returnVale, 
             take}
@@ -65,12 +84,15 @@ class Vale{
             if (newY >= 0 && newY < 8 && newX >= 0 && newX < 8) { 
                 if (map[newY][newX] == '0') { 
                     let newId = (newY + 1) * 10 + (newX + 1);
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 } 
                 else if (change.changeColorFigure(map[newY][newX]) != color) { 
                     let newId = (newY + 1) * 10 + (newX + 1);
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
             }
         }
@@ -90,12 +112,15 @@ class Vale{
             if((y+i) <=7 && (x+i) <=7 && a_stop == 0){
                 if(map[y+i][x+i] == '0'){
                     const newId = (y+1+i)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y+i][x+i]) != color)  {
                     const newId = (y+1+i)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                     a_stop = 1
                 }
                 else{
@@ -105,12 +130,15 @@ class Vale{
             if((y+i) <=7 && (x-i)>=0 && b_stop == 0){
                 if(map[y+i][x-i] == '0'){
                     const newId = (y+1+i)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y+i][x-i]) != color){
                     const newId = (y+1+i)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                     b_stop = 1
                 }
                 else{
@@ -120,12 +148,15 @@ class Vale{
             if((y-i) >=0 && (x+i)<=7 && c_stop == 0 ){
                 if(map[y-i][x+i] == '0'){
                     const newId = (y+1-i)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y-i][x+i]) != color){
                     const newId = (y+1-i)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                     c_stop =1
                 }
                 else{
@@ -135,12 +166,15 @@ class Vale{
             if((y-i) >=0 && (x-i) >=0 && d_stop == 0){
                 if(map[y-i][x-i] == '0' ){
                     const newId = (y+1-i)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                else if(change.changeColorFigure(map[y-i][x-i]) != color){
                     const newId = (y+1-i)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                     d_stop = 1
                 }
                 else{
@@ -164,13 +198,16 @@ class Vale{
             if ((y+i) <=7 && a_stop == 0){
                 if(map[y+i][x] == '0' ){
                     const newId = (y+1+i)*10 + x+1
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y+i][x]) != color  ){
                     const newId = (y+1+i)*10 + x+1
                     a_stop = 1
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
                 else{
                     a_stop = 1
@@ -180,13 +217,16 @@ class Vale{
             if ((y-i) >= 0 && b_stop == 0){
                 if(map[y-i][x] == '0'){
                     const newId = (y+1-i)*10 + x+1
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y-i][x]) != color){
                     const newId = (y+1-i)*10 + x+1
                     b_stop = 1
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
                 else{
                     b_stop = 1
@@ -196,13 +236,16 @@ class Vale{
             if ((x+1) <=7 && c_stop == 0){
                 if(map[y][x+i] == '0'){
                     const newId = (y+1)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y][x+i]) != color){
                     const newId = (y+1)*10 + x+1+i
                     c_stop = 1
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
                 else {
                     c_stop = 1
@@ -211,13 +254,16 @@ class Vale{
             if ((x-i) >= 0 && d_stop == 0){
                 if(map[y][x-i] == '0'){
                     const newId = (y+1)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y][x-i]) != color ){
                     const newId = (y+1)*10 + x+1-i
                     d_stop = 1
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
                 else{
                     d_stop = 1
@@ -245,12 +291,15 @@ class Vale{
             if((y+i) <=7 && (x+i) <=7 && a_stop == 0){
                 if(map[y+i][x+i] == '0'){
                     const newId = (y+1+i)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y+i][x+i]) != color)  {
                     const newId = (y+1+i)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                     a_stop = 1
                 }
                 else{
@@ -260,12 +309,15 @@ class Vale{
             if((y+i) <=7 && (x-i)>=0 && b_stop == 0){
                 if(map[y+i][x-i] == '0'){
                     const newId = (y+1+i)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y+i][x-i]) != color){
                     const newId = (y+1+i)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                     b_stop = 1
                 }
                 else{
@@ -275,12 +327,15 @@ class Vale{
             if((y-i) >=0 && (x+i)<=7 && c_stop == 0 ){
                 if(map[y-i][x+i] == '0'){
                     const newId = (y+1-i)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y-i][x+i]) != color){
                     const newId = (y+1-i)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                     c_stop =1
                 }
                 else{
@@ -290,12 +345,15 @@ class Vale{
             if((y-i) >=0 && (x-i) >=0 && d_stop == 0){
                 if(map[y-i][x-i] == '0' ){
                     const newId = (y+1-i)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                else if(change.changeColorFigure(map[y-i][x-i]) != color){
                     const newId = (y+1-i)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                     d_stop = 1
                 }
                 else{
@@ -305,13 +363,16 @@ class Vale{
             if ((y+i) <=7 && i_stop == 0){
                 if(map[y+i][x] == '0' ){
                     const newId = (y+1+i)*10 + x+1
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y+i][x]) != color  ){
                     const newId = (y+1+i)*10 + x+1
                     i_stop = 1
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
                 else{
                     i_stop = 1
@@ -321,13 +382,16 @@ class Vale{
             if ((y-i) >= 0 && g_stop == 0){
                 if(map[y-i][x] == '0'){
                     const newId = (y+1-i)*10 + x+1
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y-i][x]) != color){
                     const newId = (y+1-i)*10 + x+1
                     g_stop = 1
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
                 else{
                     g_stop = 1
@@ -337,13 +401,16 @@ class Vale{
             if ((x+1) <=7 && f_stop == 0){
                 if(map[y][x+i] == '0'){
                     const newId = (y+1)*10 + x+1+i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y][x+i]) != color){
                     const newId = (y+1)*10 + x+1+i
                     f_stop = 1
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
                 else {
                     f_stop = 1
@@ -352,13 +419,16 @@ class Vale{
             if ((x-i) >= 0 && r_stop == 0){
                 if(map[y][x-i] == '0'){
                     const newId = (y+1)*10 + x+1-i
-                    returnVale.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        returnVale.push(cord *10, newId)
+                    }
                 }
                 else if(change.changeColorFigure(map[y][x-i]) != color ){
                     const newId = (y+1)*10 + x+1-i
                     r_stop = 1
-                    returnVale.push(cord *10, newId)
-                    take.push(cord *10, newId)
+                    if(!check.imit(newId, cord)){
+                        take.push(cord *10, newId)
+                    }
                 }
                 else{
                     r_stop = 1
@@ -378,80 +448,101 @@ class Vale{
         if((y+i) <=7 && (x+i) <=7 ){
             if(map[y+i][x+i] == '0'){
                 const newId = (y+1+i)*10 + x+1+i
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             else if(change.changeColorFigure(map[y+i][x+i]) != color)  {
                 const newId = (y+1+i)*10 + x+1+i
-                returnVale.push(cord *10, newId)
-                take.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
         }
         if((y+i) <=7 && (x-i)>=0){
             if(map[y+i][x-i] == '0'){
                 const newId = (y+1+i)*10 + x+1-i
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             else if(change.changeColorFigure(map[y+i][x-i]) != color){
                 const newId = (y+1+i)*10 + x+1-i
-                returnVale.push(cord *10, newId)
-                take.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
         }
         if((y-i) >=0 && (x+i)<=7){
             if(map[y-i][x+i] == '0'){
                 const newId = (y+1-i)*10 + x+1+i
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             else if(change.changeColorFigure(map[y-i][x+i]) != color){
                 const newId = (y+1-i)*10 + x+1+i
-                returnVale.push(cord *10, newId)
-                take.push(cord *10, newId)
+                if(check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
 
         }
         if((y-i) >=0 && (x-i) >=0){
             if(map[y-i][x-i] == '0' ){
                 const newId = (y+1-i)*10 + x+1-i
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
            else if(change.changeColorFigure(map[y-i][x-i]) != color){
                 const newId = (y+1-i)*10 + x+1-i
-                returnVale.push(cord *10, newId)
-                take.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
         }
         if ((y+i) <=7){
             if(map[y+i][x] == '0' ){
                 const newId = (y+1+i)*10 + x+1
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             else if(change.changeColorFigure(map[y+i][x]) != color  ){
                 const newId = (y+1+i)*10 + x+1
-                returnVale.push(cord *10, newId)
-                take.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
 
         }
         if ((y-i) >= 0){
             if(map[y-i][x] == '0'){
                 const newId = (y+1-i)*10 + x+1
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             else if(change.changeColorFigure(map[y-i][x]) != color){
                 const newId = (y+1-i)*10 + x+1
-                returnVale.push(cord *10, newId)
-                take.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
         }
         if ((x+1) <=7){
             if(map[y][x+i] == '0'){
                 const newId = (y+1)*10 + x+1+i
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             else if(change.changeColorFigure(map[y][x+i]) != color){
                 const newId = (y+1)*10 + x+1+i
-                returnVale.push(cord *10, newId)
-                take.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
             else {
             }
@@ -459,16 +550,48 @@ class Vale{
         if ((x-i) >= 0){
             if(map[y][x-i] == '0'){
                 const newId = (y+1)*10 + x+1-i
-                returnVale.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
             }
             else if(change.changeColorFigure(map[y][x-i]) != color ){
                 const newId = (y+1)*10 + x+1-i
-                returnVale.push(cord *10, newId)
-                take.push(cord *10, newId)
+                if(!check.imit(newId, cord)){
+                    take.push(cord *10, newId)
+                }
             }
             else{
             }
         }
+        if (mapStore.gameColor == "white"){
+            if(map[7][1] == "0" && mapStore.L_leftMove == false && mapStore.K_Move == false && map[7][2] == "0" && map[7][3] == "0"){
+                const newId = 83
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
+            }
+            if(map[7][6] == "0" && mapStore.L_rightMove == false && mapStore.K_Move == false && map[7][5] == "0"){
+                const newId = 87
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
+            }
+        }
+        else if (mapStore.gameColor == "black"){
+            if(map[0][6] == "0" && mapStore.L_leftMove == false && mapStore.K_Move == false && map[0][5] == "0"){
+                const newId = 17
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
+            }
+            if(map[0][4] == "0" && mapStore.L_rightMove == false && mapStore.K_Move == false && map[0][2] == "0" && map[0][1] == "0"){
+                const newId = 13
+                if(!check.imit(newId, cord)){
+                    returnVale.push(cord *10, newId)
+                }
+            }
+        }
+
         return {returnVale, take}
     }
    
