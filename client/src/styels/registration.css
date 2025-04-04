@@ -1,3 +1,12 @@
+.loading{
+    position: absolute;
+    width: 100px;
+    height: 75px;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, 50%);
+}
+
 .hiden{
     display: none !important;
 }
@@ -10,13 +19,16 @@
     top: 50%;
     left: 50%; 
     transform: translate(-50%, -50%);
+    border-radius: 10%;
 }
 
 .enter_login{
     width: 600px;
     height: 600px;
-    background-color: azure;
+    background-color: #2d415e;
     position: relative;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
 }
 
 .li_1{
@@ -28,11 +40,12 @@
 }
 
 .usORem_name{
-    background-color: blue;
+    background-color: rgb(53, 53, 127);
     position: absolute;
     width: 250px;
     height: 100px;
     text-align: center;
+    font-size: 20px;
     
 }
 
@@ -45,11 +58,12 @@
 }
 
 .password_bloc{
-    background-color: blue;
+    background-color: rgb(53, 53, 127);
     position: absolute;
     width: 250px;
     height: 100px;
     text-align: center;
+    font-size: 20px;
 }
 
 .li_3{
@@ -60,12 +74,46 @@
     margin-top: 350px;
 }
 
+.li_4{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    margin-left: 175px;
+    margin-top: 75px;
+}
+
+.li_5{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    margin-left: 175px;
+    margin-top: 200px;
+}
+
+.li_6{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    margin-left: 175px;
+    margin-top: 325px;
+}
+
+.li_7{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    margin-left: 175px;
+    margin-top: 450px;
+}
+
+
 .login{
-    background-color: blue;
+    background-color: rgb(53, 53, 127);
     position: absolute;
     width: 250px;
     height: 100px;
     text-align: center;
+    font-size: 20px;
 }
 
 .reg_log{
@@ -73,7 +121,9 @@
     width: 600px;
     height: 200px;
     top: 600px;
-    background-color: black;
+    background-color: #2d415e;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
 }
 
 .but_reg{
@@ -83,5 +133,18 @@
     left: 50%;
     transform: translate(-50%);
     top: 25px;
+    background-color: rgb(53, 53, 127);
+    font-size: 20px;
+}
+
+.but_log{
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    top: 25px;
+    background-color: rgb(53, 53, 127);
+    font-size: 20px;
 }
 

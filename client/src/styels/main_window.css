@@ -17,6 +17,15 @@ html{
     position: absolute;
 }*/
 
+
+.proba{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-color: aqua;
+}
+
+
 body{
     width: 100%;
     height: 1310px;
@@ -35,11 +44,11 @@ body{
 
 .profile{
     position: absolute;
-    border: 2px solid snow;
+    border: 2px solid rgb(31, 15, 68);
     border-radius: 10%;
     height: 125px;
     width: 500px;
-    background-color: aqua;
+    background-color: rgb(83, 89, 176);
     margin: 60px;
     margin-left: 30px;
     display: grid; 
@@ -62,13 +71,115 @@ body{
 .user_name{
     position: absolute;
     width: 308px;
-    height: 80px;
+    height: 65px;
     font-size: 22px;
     left: 120px;
     display: grid; 
+    top: 10px;
     place-items: center;
 }
 
+.mmr{
+    position: absolute;
+    width: 308px;
+    height: 60px;
+    left: 120px;
+    font-size: 20px;
+    display: grid; 
+    top: 50px;
+    place-items: center;
+}
+
+.profile_mode{
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    margin-top: 15px;
+    margin-left: 2px;
+    left: 0;
+    top: 127px;
+    background-color: #2d415e;
+    border-radius: 10%;
+}
+
+.prof{
+    position: absolute;
+    width: 280px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 30%;
+    background-color: rgb(114, 114, 253);
+}
+
+.icon_prof{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url(../images/icon/icon_prof.png);
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.name_icon{
+    position: absolute;
+    width: 230px;
+    height: 60px;
+    margin-left: 35px;
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+}
+
+.friends{
+    position: absolute;
+    width: 280px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 80px;
+    border-radius: 30%;
+    background-color: rgb(114, 114, 253);
+}
+
+.icon_friends{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url("../images/icon/icon_frinds.png");
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.masendges{
+    position: absolute;
+    width: 280px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 150px;
+    border-radius: 30%;
+    background-color: rgb(114, 114, 253);
+}
+
+.icon_masendges{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url("../images/icon/icon_masendges.png");
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.out{
+    position: absolute;
+    width: 280px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 270px;
+    background-color: rgb(255, 85, 85);
+}
 
 .but_chous{
     position: absolute;
@@ -113,14 +224,14 @@ body{
 }
 
 .but_cl_menu{
-    position: relative;
+    position: absolute;
     width: 350px;
     height: 100px;
     background-image: url(../images/arrow.png);
     background: transparent;
     text-align: center;
     margin-left: 100px;
-    margin-top: 700px;
+    bottom: 60px;
 }
 
 .hidden{
@@ -165,10 +276,12 @@ li{
 }
 
 .play_h{
-    position: relative;
+    position: absolute;
     width: 350px;
     height: 100px;
     background: transparent;
+    margin-left: 100px;
+    top: 283px;
 }
 
 .game_search{

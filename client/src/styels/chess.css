@@ -147,19 +147,6 @@ body{
 }
 
 
-/* costil */ 
-
-li{
-    position: absolute;
-    width: 350px;
-    height: 100px;
-    border: 2px solid black;
-    text-align: center;
-    margin: 5px auto;
-    top: 60px;
-    display: grid; 
-    place-items: center;
-}
 
 html{
     background-color: #192434;

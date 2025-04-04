@@ -3,7 +3,7 @@ import { socket } from "../App";
 import { observer } from 'mobx-react-lite';
 import React, { FC, useContext, useEffect, useState } from "react";
 import { Context } from "..";
-
+import useSound from 'use-sound'
 
 
 const RegMainForm: FC = () =>{
@@ -14,12 +14,41 @@ const RegMainForm: FC = () =>{
     const [user, setUser] = useState<string>('')
     const [showReq, setShowReq] = useState(false) 
 
-    if (store.isAuth == true){
-        window.location.href = "/"
-    }
+    const soundBut = require("../sound/soundName_01.mp3")
+    const [playSound_but] = useSound(soundBut, { volume: 0.7 })
+
+    const loginSound = require("../sound/login_sound.mp3")
+    const [playSound_log] = useSound(loginSound)
+
+    const logFaile = require("../sound/logFaile.mp3")
+    const [playSound_logFaile] = useSound(logFaile, { volume: 0.7})
+
+    const registSound = require("../sound/regist_sound.mp3")
+    const [playSound_reg] = useSound(registSound)
   
     function getShowReq(){
         setShowReq(!showReq)
+        playSound_but()
+    }
+
+    function kostil_1(){
+        window.location.href = "/"
+    }
+
+    if (store.isAuth == true){
+        playSound_log()
+        setTimeout(kostil_1, 2500)
+    }
+
+    function kostil(){
+        if(store.isAuth == false){
+            playSound_logFaile()         
+        } 
+    }
+
+    function login(user:string, password:string){
+        store.login(user, password)
+        setTimeout(kostil, 1000)
     }
 
     return(
@@ -28,7 +57,7 @@ const RegMainForm: FC = () =>{
             
             <div className="enter_login">
                 
-                <div className={showReq ? "but_log hidden" : "but_log"}>
+                <div className={showReq ? "hidden" : ""}>
 
                     <div className="li_1">
                         <input
@@ -51,38 +80,53 @@ const RegMainForm: FC = () =>{
                     </div>
                 
                     <div className="li_3">
-                        <button className="login" onClick={() => store.login(user, password)}>Авторизация</button>
+                        <button className="login" onClick = {() => login(user, password)}>Авторизация</button>
                     </div>
 
                 </div>
 
-                <div className={showReq ? "but_req" : "but_req hidden"}>   
-                    <input
-                        onChange={e => setUsername(e.target.value)}
-                        value={username}
-                        type= "text"
-                        placeholder='username'
-                        ></input>
-                    <input
-                        onChange={e => setEmail(e.target.value)}
-                        value={email}
-                        type= "text"
-                        placeholder='email'
-                        ></input>
-                    <input
-                        onChange={e => setPassword(e.target.value)}
-                        value={password}
-                        type= "text"
-                        placeholder='password'
-                        ></input>
-                    <button onClick={() => store.registration(username, email, password)}>Регистрация</button>
+                <div className={showReq ? "" : " hidden"}>   
+                    <div className="li_4">
+                        <input
+                            className="usORem_name"
+                            onChange={e => setUsername(e.target.value)}
+                            value={username}
+                            type= "text"
+                            placeholder='username'
+                            ></input>
+                    </div>  
+
+                    <div className="li_5">      
+                        <input
+                            className="usORem_name"
+                            onChange={e => setEmail(e.target.value)}
+                            value={email}
+                            type= "text"
+                            placeholder='email'
+                            ></input>
+                    </div>
+
+                    <div className="li_6">
+                        <input
+                            className="usORem_name"
+                            onChange={e => setPassword(e.target.value)}
+                            value={password}
+                            type= "text"
+                            placeholder='password'
+                            ></input>
+                    </div>
+                    
+                    <div className="li_7">
+                        <button className="usORem_name" onClick={() => store.registration(username, email, password)}>Регистрация</button>
+                    </div>
+                    
                 </div> 
 
             </div>
             
             <div className="reg_log">
-                <button className={showReq ? "but_reg hidden" : "but_reg"} onClick={getShowReq}>Регистрация</button>
-                <button className={showReq ? "but_log" : "but_log hidden"} onClick={getShowReq}>Войти</button>
+                <button className={showReq ? "but_reg hidden" : "but_reg"} onClick={getShowReq}>Регистрация</button> 
+                <button className={showReq ? "but_log" : "but_log hidden"} onClick={getShowReq}>Войти</button> 
             </div> 
         </div>
 

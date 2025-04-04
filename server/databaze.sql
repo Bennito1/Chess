@@ -3,6 +3,7 @@ create TABLE users(
     username varchar(20) UNIQUE,
     password varchar(20) NOT NULL,
     email text UNIQUE,
+    mmr integer,
     isActivated boolean,
     activationLinck text
 )
