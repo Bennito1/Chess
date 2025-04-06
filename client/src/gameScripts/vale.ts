@@ -584,7 +584,7 @@ class Vale{
                     returnVale.push(cord *10, newId)
                 }
             }
-            if(map[0][4] == "0" && mapStore.L_rightMove == false && mapStore.K_Move == false && map[0][2] == "0" && map[0][1] == "0"){
+            if(map[0][3] == "0" && mapStore.L_rightMove == false && mapStore.K_Move == false && map[0][2] == "0" && map[0][1] == "0"){
                 const newId = 13
                 if(!check.imit(newId, cord)){
                     returnVale.push(cord *10, newId)

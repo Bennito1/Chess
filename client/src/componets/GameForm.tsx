@@ -18,24 +18,56 @@ const check = new Check
 
 const GameForm: FC = () => {   
 
-
     const {map, ID, gameColor, moveColor, setMap, setGameColor} = useMapContext()
+    const [valeFigure, setValeFigure] = useState<boolean>(false)
     const [stateVale, setVale] = useState<number[]>([])
     const [stateTake, setTake] = useState<number[]>([])
     const [kingCheck, setkingCheck] = useState<number>()
     const [gameEnd, setGameEnd] = useState<boolean>(false)
     const [hodStatus, setHodStatus] = useState<string>("Белые ходят")
     const [endGameState, setGameState] = useState<string>("none")
+    
     useEffect(() => {
+        if(localStorage.getItem("enemyName")){
+            mapStore.setGetId(true)
+            socket.emit('resaveId', localStorage.getItem("name"))
+        }
+        
         if (!mapStore.getID) {
-            socket.emit('idGame');
+            socket.emit('idGame', localStorage.getItem("name"));
         }
 
         const handleGiveID = (gameID: number) => {
             mapStore.setGetId(true) 
             mapStore.setID(gameID)
             socket.emit('giveColor', mapStore.ID)
-        };
+            socket.emit('getEnemyName', mapStore.ID, localStorage.getItem('name'))
+        }
+
+        const handelEnemyName = (enemyName:string) =>{
+            localStorage.setItem("enemyName", enemyName)
+        }
+
+        const setNewData = (ID:number, moveColor:string, color:string, newMap:string[][]) =>{
+            mapStore.setID(ID)
+            mapStore.setGameColor(color)
+            mapStore.setMoveColor(moveColor)
+            mapStore.setMap(newMap)
+            if(check.isCheck(newMap)){
+                const kingPos = check.findKr(newMap, mapStore.gameColor)
+                if(kingPos != null){
+                    setkingCheck(kingPos[0]*10 + kingPos[1] +11)
+                }
+            }
+            else{
+                setkingCheck(1000)
+            }
+            if(checkMate.checkMate() == true){
+                return(null)
+            }
+            console.log("мат")
+            endGame()
+        }
 
         const handleBoardState = (newMap: string[][]) => {
             mapStore.setMap(newMap)
@@ -77,12 +109,13 @@ const GameForm: FC = () => {
             setGameState("win")
         }
 
-        socket.on('giveID', handleGiveID);
-        socket.on('boardState', handleBoardState);
-        socket.on('gameColor', handleGameColor);
-        socket.on('hodColor', handleHodColor);
+        socket.on('enemyName', handelEnemyName)
+        socket.on('giveID', handleGiveID)
+        socket.on('boardState', handleBoardState)
+        socket.on('gameColor', handleGameColor)
+        socket.on('hodColor', handleHodColor)
         socket.on('win', win)
-
+        socket.on('newData', setNewData)
         return () => {
             socket.off('giveID', handleGiveID);
             socket.off('boardState', handleBoardState);
@@ -243,7 +276,6 @@ const GameForm: FC = () => {
         )
     }
     const renderBoard = () =>{
-        console.log(map)
         const rows = []
         for(let y = 0; y<8; y++){
             const cells = []
@@ -266,6 +298,7 @@ const GameForm: FC = () => {
             </div>
             <div className="gameStatus">{hodStatus}</div>
             <div className={gameEnd ? "window" : "hidden"}>{endGameState == "win" ? "Вы победили" : "Вы поиграли"}</div>
+            <div className="main"></div>
         </div>
     )
 }

@@ -46,7 +46,6 @@ class Change {
                 case 'k' : return 'k'
                 case 'K' : return 'k'
             }
-            
         }
         if(color == 'white'){
             switch(name){

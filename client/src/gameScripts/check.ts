@@ -16,7 +16,6 @@ class Check{
         console.log(fmap)
         fmap[yf][xf] = '0'
         fmap[yid][xid] = f
-        console.log(mapStore.map, this.isCheck(fmap))
         return(this.isCheck(fmap))
     }
 
@@ -27,8 +26,7 @@ class Check{
         const [kingY, kingX] = kingPosition
         
         return(
-            this.checkLQ(map, kingY, kingX) || this.checkSQ(map, kingY, kingX) ||this.checkK(map, kingY, kingX)
-            || this.checkP(map, kingY, kingX) || this.checkKr(map, kingY, kingX)
+            this.checkLQ(map, kingY, kingX) || this.checkSQ(map, kingY, kingX) || this.checkK(map, kingY, kingX) || this.checkP(map, kingY, kingX) || this.checkKr(map, kingY, kingX)
         )
     }
 

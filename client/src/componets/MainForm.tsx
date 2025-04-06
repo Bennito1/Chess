@@ -42,6 +42,13 @@ const MainForm: FC = () =>{
         setEndTimeOit(false)
         setTimeout(() => {setEndTimeOit(true)}, 450)
         const id = socket.id
+        if(store.isAuth){
+            localStorage.setItem("name", store.user.username)
+        }
+        else{
+            localStorage.setItem("name", "гость")
+        }
+        localStorage.removeItem("enemyName")
         socket.emit('playerReady', id)
     }
 
@@ -54,13 +61,8 @@ const MainForm: FC = () =>{
         playSound_but()
         setTimeout(() => {window.location.href = "/reg"}, 150)
     }
-
-    function startGame(){
-        const id = socket.id
-        socket.emit('playerReady', id)
-    }
     socket.on('startGame', () => {
-        window.location.href = '/game';
+        window.location.href = '/game'
     })
     
 

@@ -10,7 +10,7 @@ import GameForm from './componets/GameForm'
 import { mapStore } from './store/mapStore';
 import { io } from "socket.io-client";
 import RegMainForm from './componets/RegMainForm';
-const URL = 'http://192.168.120.8:500'
+const URL = 'http://25.7.15.253:500'
 
 export const socket = io(`${URL}`)
 

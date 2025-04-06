@@ -22,6 +22,8 @@ class MapStore{
 
     moveColor:string = 'white'
 
+    valeState:boolean = false
+
     L_leftMove:boolean = false
     L_rightMove:boolean = false
     K_Move:boolean = false
