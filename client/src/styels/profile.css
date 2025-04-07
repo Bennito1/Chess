@@ -1,0 +1,314 @@
+.main_whindow{
+    position: absolute;
+    width: 1800px;
+    height: 1300px;
+    background-color: rgb(57, 57, 120);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 5px;
+}
+
+.help_bord{
+    position: absolute;
+    width: 420px;
+    height: 1300px;
+    background-color: rgb(37, 37, 75);
+}
+
+.profile_but{
+    position: absolute;
+    width: 400px;
+    height: 125px;
+    background-color: aqua;
+    margin: 10px;
+}
+
+.profile_but:active{
+    transform: translateY(4px);
+}
+
+.profill_icon{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 40%;
+    top: 50%;
+    background-image: url(../images/icon/icon_prof.png);
+}
+
+.text_hl_but{
+    font-size: 22px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 60%;
+    top: 50%;
+    user-select: none;
+}
+
+.friends_but{
+    position: absolute;
+    width: 400px;
+    height: 125px;
+    background-color: aqua;
+    margin: 10px;
+    top: 145px;
+}
+
+.friends_but:active{
+    transform: translateY(4px);
+}
+
+.friends_icon{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-image: url(../images/icon/icon_frinds.png);
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.settings_but{
+    position: absolute;
+    width: 400px;
+    height: 125px;
+    background-color: aqua;
+    margin: 10px;
+    top: 290px;
+}
+
+.settings_but:active{
+    transform: translateY(4px);
+}
+
+.sttings_icon{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-color: black;
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.out_button{
+    position: absolute;
+    width: 400px;
+    height: 125px;
+    background-color: aqua;
+    margin: 10px;
+    bottom: 0px;
+    user-select: none;
+}
+
+.out_button:active{
+    transform: translateY(4px);
+}
+
+.out_name{
+    font-size: 22px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+.user_name_1{
+    position: absolute;
+
+}
+
+.fix_bord_chous{
+    position: absolute;
+    width: 1380px;
+    height: 150px;
+    left: 420px;
+    background-color: rgb(41, 41, 94);
+}
+
+.profile_but_bord{
+    position: absolute;
+    width: 350px;
+    height: 140px;
+    margin: 5px;
+    background-color: antiquewhite;
+    left: 150px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    user-select: none;
+}
+
+.profile_but_bord:active{
+    transform: translateY(4px);
+}
+
+.game_history{
+    position: absolute;
+    width: 350px;
+    height: 140px;
+    margin: 5px;
+    background-color: antiquewhite;
+    left: 510px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    user-select: none;
+}
+
+.game_history:active{
+    transform: translateY(4px);
+}
+
+.rewards{
+    position: absolute;
+    width: 350px;
+    height: 140px;
+    margin: 5px;
+    background-color: antiquewhite;
+    left: 867px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    user-select: none;
+}
+
+.rewards:active{
+    transform: translateY(4px);
+}
+
+.friends_but_bord{
+    position: absolute;
+    width: 350px;
+    height: 140px;
+    margin: 5px;
+    background-color: antiquewhite;
+    left: 150px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    user-select: none;
+}
+
+.friends_but_bord:active{
+    transform: translateY(4px);
+}
+
+.masendges_but_bord{
+    position: absolute;
+    width: 350px;
+    height: 140px;
+    margin: 5px;
+    background-color: antiquewhite;
+    left: 510px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    user-select: none;
+}
+
+.masendges_but_bord:active{
+    transform: translateY(4px);
+}
+
+.invite_friends{
+    position: absolute;
+    width: 350px;
+    height: 140px;
+    margin: 5px;
+    background-color: antiquewhite;
+    left: 867px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    user-select: none;
+}
+
+.invite_friends:active{
+    transform: translateY(4px);
+}
+
+.settings_but_bord{
+    position: absolute;
+    width: 350px;
+    height: 140px;
+    margin: 5px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    background-color: antiquewhite;
+    left: 330px;
+}
+
+.settings_but_bord:active{
+    transform: translateY(4px);
+}
+
+.styles_but_bord{
+    position: absolute;
+    width: 350px;
+    height: 140px;
+    margin: 5px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    background-color: antiquewhite;
+    right: 330px;
+}
+
+.styles_but_bord:active{
+    transform: translateY(4px);
+}
+
+.whindow_show{
+    position: absolute;
+    width: 1300px;
+    height: 1150px;
+    margin-right: 40px;
+    background-color: rgba(44, 44, 60, 0.297);
+    right: 0;
+    bottom: 0;
+}
+
+.profile_bord{
+    position: absolute;
+    width: 1300px;
+    height: 350px;
+    background-color: antiquewhite;
+}
+
+.icon_prof_Fb{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-size: 200px 200px;
+    margin: 10px;
+    background-image: url(../images/poni_icon.png);
+    object-fit: fill;
+    border-radius: 50%;
+}
+
+.prof_name_text{
+    position: absolute;
+    width: 500px;
+    height: 200px;
+    margin-top: 10px;
+    margin-left: 240px;
+    display: grid;
+    place-items: center;
+    font-size: 88px;
+}
+
+.mmr_text{
+    position: absolute;
+    width: 300px;
+    height: 130px;
+    margin: 10px;
+    background-color: aqua;
+    top: 205px;
+    display: grid;
+    place-items: center;
+    font-size: 34px;
+}

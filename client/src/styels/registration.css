@@ -11,10 +11,26 @@
     display: none !important;
 }
 
+.outB{
+    position: absolute;
+    width: 300px;
+    height: 125px;
+    margin: 20px;
+    bottom: 0px;
+    background-color: rgb(53, 53, 127);
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+}
+
+.outB:active{
+    transform: translateY(4px);
+}
+
 .MainReg{
     width: 600px;
     height: 800px;
-    background-color: aqua;
+    background-color: #2d415e;
     position: absolute;
     top: 50%;
     left: 50%; 

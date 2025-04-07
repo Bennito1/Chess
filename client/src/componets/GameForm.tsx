@@ -26,6 +26,7 @@ const GameForm: FC = () => {
     const [gameEnd, setGameEnd] = useState<boolean>(false)
     const [hodStatus, setHodStatus] = useState<string>("Белые ходят")
     const [endGameState, setGameState] = useState<string>("none")
+    const [enemyName, setEnemyName] = useState<string>('enemy loading')
     
     useEffect(() => {
         if(localStorage.getItem("enemyName")){
@@ -34,7 +35,7 @@ const GameForm: FC = () => {
         }
         
         if (!mapStore.getID) {
-            socket.emit('idGame', localStorage.getItem("name"));
+            socket.emit('idGame', localStorage.getItem("name"))
         }
 
         const handleGiveID = (gameID: number) => {
@@ -46,6 +47,7 @@ const GameForm: FC = () => {
 
         const handelEnemyName = (enemyName:string) =>{
             localStorage.setItem("enemyName", enemyName)
+            setEnemyName(enemyName)
         }
 
         const setNewData = (ID:number, moveColor:string, color:string, newMap:string[][]) =>{
@@ -298,7 +300,10 @@ const GameForm: FC = () => {
             </div>
             <div className="gameStatus">{hodStatus}</div>
             <div className={gameEnd ? "window" : "hidden"}>{endGameState == "win" ? "Вы победили" : "Вы поиграли"}</div>
-            <div className="main"></div>
+            <div className="main">
+                <div>{localStorage.getItem("name")}</div>
+                <div>{enemyName}</div>
+            </div>
         </div>
     )
 }

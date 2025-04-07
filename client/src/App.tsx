@@ -1,5 +1,4 @@
 import React, { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react';
-import LoginForm from './componets/loginForm';
 import { Context } from '.';
 import { observer } from 'mobx-react-lite';
 import { IUser } from './models/user';
@@ -10,7 +9,8 @@ import GameForm from './componets/GameForm'
 import { mapStore } from './store/mapStore';
 import { io } from "socket.io-client";
 import RegMainForm from './componets/RegMainForm';
-const URL = 'http://25.7.15.253:500'
+import ProfileForm from './componets/ProfileForm';
+const URL = 'http://192.168.120.8:500'
 
 export const socket = io(`${URL}`)
 
@@ -42,6 +42,7 @@ const App: FC = ()=>{
       <Routes>
       <Route path='/reg' element = {<RegMainForm/>}/>
         <Route path='*' element = {<ErrorForm/>}/>
+        <Route path='/profile' element={<ProfileForm/>}/>
         <Route path='/' element ={<MainForm/>}/>
         <Route path='/game' element={
           <MapContext.Provider value={mapStore}>

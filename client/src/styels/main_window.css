@@ -68,6 +68,10 @@ body{
     margin: 20.5px;
 }
 
+.show_profill:active{
+    transform: translateY(4px);
+}
+
 .user_name{
     position: absolute;
     width: 308px;
@@ -110,6 +114,11 @@ body{
     margin-top: 10px;
     border-radius: 30%;
     background-color: rgb(114, 114, 253);
+    user-select: none;
+}
+
+.prof:active{
+    transform: translateY(4px);
 }
 
 .icon_prof{
@@ -140,6 +149,11 @@ body{
     margin-top: 80px;
     border-radius: 30%;
     background-color: rgb(114, 114, 253);
+    user-select: none;
+}
+
+.friends:active{
+    transform: translateY(4px);
 }
 
 .icon_friends{
@@ -160,6 +174,11 @@ body{
     margin-top: 150px;
     border-radius: 30%;
     background-color: rgb(114, 114, 253);
+    user-select: none;
+}
+
+.masendges:active{
+    transform: translateY(4px);
 }
 
 .icon_masendges{
@@ -179,6 +198,18 @@ body{
     margin-left: 10px;
     margin-top: 270px;
     background-color: rgb(255, 85, 85);
+    user-select: none;
+}
+
+.loggin{
+    position: absolute;
+    width: 200px;
+    height: 45px;
+    background-color: rgb(54, 234, 54);
+}
+
+.loggin:active{
+    transform: translateY(4px);
 }
 
 .but_chous{
@@ -213,6 +244,14 @@ body{
     animation-fill-mode: forwards;
 }
 
+.but_op_menu:active{
+    transform: translateY(4px);
+}
+
+.but_chous:active{
+    transform: translateY(4px);
+}
+
 .but_chous.active{
     animation-name: but_pl_active;
     animation-duration: 0.5s;
@@ -232,6 +271,11 @@ body{
     text-align: center;
     margin-left: 100px;
     bottom: 60px;
+    margin-bottom: 10px;
+}
+
+.but_cl_menu:active{
+    transform: translate(4px);
 }
 
 .hidden{
@@ -294,6 +338,11 @@ li{
     margin: 40px;
 }
 
+.game_search.active{
+    animation-name: search_active;
+    animation-duration: 1s;
+}
+
 .text_saerch{
     position: absolute;
     right: 0;
@@ -319,6 +368,16 @@ li{
 .game_search.active{
     animation-name: but_pl_posiv;
     animation-duration: 1s;
+}
+
+@keyframes search_active{
+    0%{
+        right: -500px;
+    }
+
+    100%{
+        right: 0px;
+    }
 }
 
 @keyframes but_pl_active{
@@ -520,6 +579,14 @@ li{
         place-items: center;   
     }
     
+    .mmr{
+        width: 268px;
+        height: 60px;
+        left: 102px;
+        font-size: 20px; 
+        top: 50px;
+    }
+
     .show_profill{
 
         background-size: 70px 70px;
@@ -543,6 +610,8 @@ li{
         position: absolute;
         width:250px;
         height: 100px;
+        margin-bottom: 10px;
+        bottom: -50px;
     }
     
     .but_op_menu{
@@ -565,7 +634,7 @@ li{
     menu{
         top: 9px;
         width: 500px;
-        height: 850px;
+        height: 920px;
         right: 20px;
     }
     
@@ -578,16 +647,17 @@ li{
     .play_h{
         width: 250px;
         height: 100px;
+        margin-left: 127px;
     }
 
     @keyframes open_menu {
         0%{
             width: 0;
-            height: 850px;
+            height: 920px;
         }
         
         100%{
-            height: 850px;
+            height: 920px;
             width: 500px;
         }
         
@@ -595,12 +665,12 @@ li{
 
     @keyframes clous_menu {
         0%{
-            height: 850px;
+            height: 920px;
             width: 500px;
         }
     
         100%{
-            height: 850px;
+            height: 920px;
             width: 0px;
         }
         

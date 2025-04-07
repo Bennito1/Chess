@@ -37,16 +37,43 @@ export default class Store{
         this.isLoading = bool;
     }
 
+    authError = false
+    authMassengeError = ""
+    regError = false
+    reqMassengeError = ""
+
+    setAuthError(bool:boolean){
+        this.authError = bool
+    }
+    setRegError(bool:boolean){
+        this.regError = bool
+    }
+    setAuthMassengeError(text:string){
+        this.authMassengeError = text
+    }
+    setRegMassengeError(text:string){
+        this.reqMassengeError = text
+    }
+
     async login(user: string, password: string){
         try{
-            const response = await AuthService.login(user, password);
+            const response = await AuthService.login(user, password)
             console.log(response)
             localStorage.setItem('accessToken', response.data.accessToken)
             localStorage.setItem('refreshToken', response.data.refreshToken)
-            this.setAuth(true);
-            this.setUser(response.data.user);
-        }catch(e){
-            console.log(e)
+            this.setAuthError(false)
+            this.setAuthMassengeError("")
+            this.setAuth(true)
+            this.setUser(response.data.user)
+        }catch(e:any){
+            this.setAuthError(true)
+            if(e.code == 'ERR_BAD_REQUEST'){
+                this.setAuthMassengeError("неверное имя пользователя или пароль")
+            }
+            else{
+                this.setAuthMassengeError("неизвестная ошибка")
+            }
+            console.log(e.status)
         }
     }
     async registration(username: string, email: string, password: string){
@@ -56,8 +83,14 @@ export default class Store{
             localStorage.setItem('refreshToken', response.data.refreshToken)
             this.setAuth(true)
             this.setUser(response.data.user)
-        }catch(e){
-            console.log(e)
+        }catch(e:any){
+            if(e.status == 400){
+                this.setAuthMassengeError(e.response.data.message)
+            }
+            else{
+                this.setAuthMassengeError("неизвестная ошибка")
+            }
+            console.log(e.status)
         }
     }
     async logout(){

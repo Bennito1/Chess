@@ -4,7 +4,6 @@ import { observer } from 'mobx-react-lite';
 import "../styels/main_window.css"
 import { IUser } from "../models/user";
 import { Context } from "..";
-import LoginForm from "./loginForm";
 import { socket } from "../App";
 import { mapStore } from "../store/mapStore";
 import "../styels/play_sound.css"
@@ -16,6 +15,7 @@ const MainForm: FC = () =>{
 
     const[menuHidden, setmNenuState] = useState(true)
     const[endTimeOit, setEndTimeOit] = useState(true)
+    const[hindBut, sethindBut] = useState(true)
     const [showLoginForm, setShowLoginForm] = useState(false)
 
     const[showProfillMode, setTorF] = useState(true)
@@ -54,7 +54,20 @@ const MainForm: FC = () =>{
 
     function profil_mode(){
         setTorF(!showProfillMode)
-        
+        playSound_but()
+    }
+
+    function profClick(){
+        playSound_but()
+        setTimeout(() => {window.location.href = "/profile"}, 150)
+    }
+
+    function freienClick(){
+        playSound_but()
+    }
+
+    function masClick(){
+        playSound_but()
     }
 
     function login(){
@@ -71,27 +84,27 @@ const MainForm: FC = () =>{
 
             <div className="profile">
 
-                <div className="user_name">{store.isAuth ? store.user.username : <button onClick={() => login()}>Войти</button>}</div>
+                <div className="user_name">{store.isAuth ? store.user.username : <button className="loggin" onClick={() => login()}>Войти</button>}</div>
                 <div className="mmr">mmr: {store.isAuth ? store.user.mmr : ''}</div>
                 <div className="show_profill" onClick={profil_mode}></div>
 
                 <div className={showProfillMode?"profile_mode hidden":"profile_mode"}>
 
-                    <div className="prof">
+                    <div className="prof" onClick={profClick}>
 
                         <div className="icon_prof"></div>
                         <div className="name_icon">profil</div>
 
                     </div>
 
-                    <div className="friends">
+                    <div className="friends" onClick={freienClick}>
 
                         <div className="icon_friends"></div>
                         <div className="name_icon">friends</div>
 
                     </div>
 
-                    <div className="masendges">
+                    <div className="masendges" onClick={masClick}>
 
                         <div className="icon_masendges"></div>
                         <div className="name_icon">masendges</div>
@@ -113,14 +126,14 @@ const MainForm: FC = () =>{
 
             </menu>
 
-            <div className={menuHidden ? ( endTimeOit ? "but_chous" : "but_chous posiv" ): (endTimeOit ? "hidden" : "but_chous active" )}>
+            <div className={hindBut? (menuHidden ? ( endTimeOit ? "but_chous" : "but_chous posiv" ): (endTimeOit ? "hidden" : "but_chous active" )):("hidden")}>
                 
                 <button className="but_op_menu" onClick={hiddenNo}>ИГРАТЬ</button>
                 <embed src="../sound/click_back.mp3"/>
 
             </div>
 
-            <div className={faundMod?"game_search hidden" : "game_search"} >
+            <div className={faundMod?"game_search hidden" : "game_search active"} >
 
                 <div className="text_saerch">Game search</div>
                 <div className="time_search">00:00</div>
@@ -128,8 +141,6 @@ const MainForm: FC = () =>{
             </div>
 
             <div className={showLoginForm? ``:`hidden`}>
-
-                <LoginForm/>
 
             </div>
 

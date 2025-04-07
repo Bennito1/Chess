@@ -50,84 +50,100 @@ const RegMainForm: FC = () =>{
         store.login(user, password)
         setTimeout(kostil, 1000)
     }
+    function outB(){
+        playSound_but()
+        setTimeout(kostil_1, 150)
+    }
 
     return(
 
-        <div className="MainReg">
-            
-            <div className="enter_login">
-                
-                <div className={showReq ? "hidden" : ""}>
+        <div>
 
-                    <div className="li_1">
-                        <input
-                            className="usORem_name"
-                            onChange={e => setUser(e.target.value)}
-                            value={user}
-                            type= "text"
-                            placeholder='emmail or username'
-                            ></input>
-                    </div>
-               
-                    <div className="li_2">
-                        <input
-                            className="password_bloc"
-                            onChange={e => setPassword(e.target.value)}
-                            value={password}
-                            type= "text"
-                            placeholder='password'
-                            ></input>
-                    </div>
+            <div className={store.authError ? "window" : (store.regError ? "window" : "")}>
+                {store.authError ? store.authMassengeError : ""}
+                {store.regError ? store.reqMassengeError : ""}
+            </div>
+
+            <div className="outB" onClick={outB}>out</div>
+
+            <div className="MainReg">
+            
+                <div className="enter_login">
                 
-                    <div className="li_3">
-                        <button className="login" onClick = {() => login(user, password)}>Авторизация</button>
+                    <div className={showReq ? "hidden" : ""}>
+
+                        <div className="li_1">
+                            <input
+                                className="usORem_name"
+                                onChange={e => setUser(e.target.value)}
+                                value={user}
+                                type= "text"
+                                placeholder='emmail or username'
+                                ></input>
+                        </div>
+               
+                        <div className="li_2">
+                            <input
+                                className="password_bloc"
+                                onChange={e => setPassword(e.target.value)}
+                                value={password}
+                                type= "text"
+                                placeholder='password'
+                                ></input>
+                        </div>
+                
+                        <div className="li_3">
+                            <button className="login" onClick = {() => login(user, password)}>Авторизация</button>
+                        </div>
+
                     </div>
+
+                    <div className={showReq ? "" : " hidden"}>   
+                        <div className="li_4">
+                            <input
+                                className="usORem_name"
+                                onChange={e => setUsername(e.target.value)}
+                                value={username}
+                                type= "text"
+                                placeholder='username'
+                                ></input>
+                        </div>  
+
+                        <div className="li_5">      
+                            <input
+                                className="usORem_name"
+                                onChange={e => setEmail(e.target.value)}
+                                value={email}
+                                type= "text"
+                                placeholder='email'
+                                ></input>
+                        </div>
+
+                        <div className="li_6">
+                            <input
+                                className="usORem_name"
+                                onChange={e => setPassword(e.target.value)}
+                                value={password}
+                                type= "text"
+                                placeholder='password'
+                                ></input>
+                        </div>
+                    
+                        <div className="li_7">
+                            <button className="usORem_name" onClick={() => store.registration(username, email, password)}>Регистрация</button>
+                        </div>
+                    
+                    </div> 
 
                 </div>
-
-                <div className={showReq ? "" : " hidden"}>   
-                    <div className="li_4">
-                        <input
-                            className="usORem_name"
-                            onChange={e => setUsername(e.target.value)}
-                            value={username}
-                            type= "text"
-                            placeholder='username'
-                            ></input>
-                    </div>  
-
-                    <div className="li_5">      
-                        <input
-                            className="usORem_name"
-                            onChange={e => setEmail(e.target.value)}
-                            value={email}
-                            type= "text"
-                            placeholder='email'
-                            ></input>
-                    </div>
-
-                    <div className="li_6">
-                        <input
-                            className="usORem_name"
-                            onChange={e => setPassword(e.target.value)}
-                            value={password}
-                            type= "text"
-                            placeholder='password'
-                            ></input>
-                    </div>
-                    
-                    <div className="li_7">
-                        <button className="usORem_name" onClick={() => store.registration(username, email, password)}>Регистрация</button>
-                    </div>
-                    
+            
+                <div className="reg_log">
+                    <button className={showReq ? "but_reg hidden" : "but_reg"} onClick={getShowReq}>Регистрация</button> 
+                    <button className={showReq ? "but_log" : "but_log hidden"} onClick={getShowReq}>Войти</button> 
                 </div> 
 
             </div>
-            
-            <div className="reg_log">
-                <button className={showReq ? "but_reg hidden" : "but_reg"} onClick={getShowReq}>Регистрация</button> 
-                <button className={showReq ? "but_log" : "but_log hidden"} onClick={getShowReq}>Войти</button> 
-            </div> 
+
         </div>
 
     )

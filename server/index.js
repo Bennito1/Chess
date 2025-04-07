@@ -50,7 +50,7 @@ app.get("/game", (request, response) =>{
 
 io.on('connection', (socket) => {
     socket.on('playerReady', id =>{
-        players.push(socket)
+        players.push(socket) // перезаход надо 
         console.log(`user connected ${id}`, players, players.length);
             if (players.length >= 2){
                 const player1 = players.shift();
