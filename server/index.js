@@ -72,6 +72,11 @@ io.on('connection', (socket) => {
                 player2.emit('startGame')
             }
     })
+
+    socket.on('stopSerch', id =>{
+        players.shift(id)
+        console.log(players)
+    })
     socket.on('idGame', (name)=>{
         gamePlayers.push(socket.id)
         gamePlayers.push(name)

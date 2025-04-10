@@ -17,7 +17,8 @@ const MainForm: FC = () =>{
     const[menuHidden, setmNenuState] = useState(true)
     const[endTimeOit, setEndTimeOit] = useState(true)
     const [showLoginForm, setShowLoginForm] = useState(false)
-
+    const [userName, setUserName] = useState(localStorage.getItem("name"))
+    const [enemyName, setEnemyName] = useState(localStorage.getItem("enemyName"))
     const[showProfillMode, setTorF] = useState(true)
     const[faundMod, setFgm] = useState(true)
 
@@ -28,6 +29,7 @@ const MainForm: FC = () =>{
     const soundStF = require("../sound/wargoal_meloboom.mp3")
     const [playSound_StF] = useSound(soundStF, { volume: 0.7 })
 
+
     function hiddenNo (){
         setEndTimeOit(false)
         setmNenuState(!menuHidden)
@@ -37,16 +39,18 @@ const MainForm: FC = () =>{
 
     function startFg(){
         playSound_StF()
-        setFgm(!faundMod)
+        //setFgm(!faundMod)
         setmNenuState(!menuHidden)
         setEndTimeOit(false)
         setTimeout(() => {setEndTimeOit(true)}, 450)
         const id = socket.id
         if(store.isAuth){
             localStorage.setItem("name", store.user.username)
+            setUserName(localStorage.getItem("name"))
         }
         else{
             localStorage.setItem("name", "гость")
+            setUserName(localStorage.getItem("name"))
         }
         localStorage.removeItem("enemyName")
         socket.emit('playerReady', id)
@@ -55,6 +59,18 @@ const MainForm: FC = () =>{
     function profil_mode(){
         setTorF(!showProfillMode)
         
+    }
+
+    function stopSerch(){
+        localStorage.removeItem("name")
+        setUserName(localStorage.getItem("name"))
+        console.log(localStorage)
+        const id = socket.id
+        socket.emit("stopSerch", id)
+    }
+
+    function backGame(){
+        window.location.href = '/game'
     }
 
     function login(){
@@ -68,7 +84,7 @@ const MainForm: FC = () =>{
 
     return(
         <div>
-
+            <button  onClick={() => {localStorage.removeItem("enemyName")}}>del enemyName</button>
             <div className="profile">
 
                 <div className="user_name">{store.isAuth ? store.user.username : <button onClick={() => login()}>Войти</button>}</div>
@@ -114,9 +130,16 @@ const MainForm: FC = () =>{
             </menu>
 
             <div className={menuHidden ? ( endTimeOit ? "but_chous" : "but_chous posiv" ): (endTimeOit ? "hidden" : "but_chous active" )}>
-                
-                <button className="but_op_menu" onClick={hiddenNo}>ИГРАТЬ</button>
-                <embed src="../sound/click_back.mp3"/>
+                {
+                    userName?
+                        enemyName?
+                            <button className="but_op_menu" onClick={backGame}>вернуться в игру</button>:
+                            <button className="but_op_menu" onClick={stopSerch}>отменить поиск</button>
+                        :
+                        enemyName?
+                        <button className="but_op_menu" onClick={backGame}>вернуться в игру</button>:
+                        <button className="but_op_menu" onClick={hiddenNo}>ИГРАТЬ</button>
+                }
 
             </div>
 
