@@ -8,8 +8,10 @@ import LoginForm from "./loginForm";
 import { socket } from "../App";
 import { mapStore } from "../store/mapStore";
 import "../styels/play_sound.css"
+import { v4 as uuidv4} from 'uuid'
 
 import useSound from 'use-sound'
+import ChatForm from "./ChatForm";
 
 const MainForm: FC = () =>{
     const {store} = useContext(Context)
@@ -17,11 +19,10 @@ const MainForm: FC = () =>{
     const[menuHidden, setmNenuState] = useState(true)
     const[endTimeOit, setEndTimeOit] = useState(true)
     const [showLoginForm, setShowLoginForm] = useState(false)
-    const [userName, setUserName] = useState(localStorage.getItem("name"))
+    const [isSearch, setIsSearch] = useState(localStorage.getItem("searchState"))
     const [enemyName, setEnemyName] = useState(localStorage.getItem("enemyName"))
     const[showProfillMode, setTorF] = useState(true)
     const[faundMod, setFgm] = useState(true)
-
 
     const soundBut = require("../sound/soundName_01.mp3")
     const [playSound_but] = useSound(soundBut, { volume: 0.7 })
@@ -29,7 +30,17 @@ const MainForm: FC = () =>{
     const soundStF = require("../sound/wargoal_meloboom.mp3")
     const [playSound_StF] = useSound(soundStF, { volume: 0.7 })
 
-
+    if(store.isAuth == true){
+        localStorage.setItem("name", store.user.username)
+    }
+    else if(store.isAuth == false){
+        if (localStorage.getItem("name")){
+        }
+        else{
+            console.log(localStorage)
+            localStorage.setItem("name", ("user " + uuidv4()))
+        }
+    }
     function hiddenNo (){
         setEndTimeOit(false)
         setmNenuState(!menuHidden)
@@ -45,16 +56,17 @@ const MainForm: FC = () =>{
         setTimeout(() => {setEndTimeOit(true)}, 450)
         const id = socket.id
         if(store.isAuth){
-            localStorage.setItem("name", store.user.username)
-            setUserName(localStorage.getItem("name"))
+            localStorage.setItem("searchState", "true")
+            setIsSearch(localStorage.getItem("searchState"))
         }
         else{
-            localStorage.setItem("name", "гость")
-            setUserName(localStorage.getItem("name"))
+            localStorage.setItem("searchState", "true")
+            setIsSearch(localStorage.getItem("searchState"))
         }
         localStorage.removeItem("enemyName")
         socket.emit('playerReady', id)
     }
+
 
     function profil_mode(){
         setTorF(!showProfillMode)
@@ -62,8 +74,8 @@ const MainForm: FC = () =>{
     }
 
     function stopSerch(){
-        localStorage.removeItem("name")
-        setUserName(localStorage.getItem("name"))
+        localStorage.removeItem("searchState")
+        setIsSearch(localStorage.getItem("searchState"))
         console.log(localStorage)
         const id = socket.id
         socket.emit("stopSerch", id)
@@ -99,7 +111,6 @@ const MainForm: FC = () =>{
                         <div className="name_icon">profil</div>
 
                     </div>
-
                     <div className="friends">
 
                         <div className="icon_friends"></div>
@@ -118,8 +129,8 @@ const MainForm: FC = () =>{
                     
                 </div>
 
-            </div>           
-
+            </div>     
+                
             <menu className= {menuHidden ? ( endTimeOit ? "hidden" : "posiv" ) : (endTimeOit ? "active" : "active" )}>
                 
                 <li className="menu="><span className="menu_runced">menu1</span></li>
@@ -131,7 +142,7 @@ const MainForm: FC = () =>{
 
             <div className={menuHidden ? ( endTimeOit ? "but_chous" : "but_chous posiv" ): (endTimeOit ? "hidden" : "but_chous active" )}>
                 {
-                    userName?
+                    isSearch?
                         enemyName?
                             <button className="but_op_menu" onClick={backGame}>вернуться в игру</button>:
                             <button className="but_op_menu" onClick={stopSerch}>отменить поиск</button>
@@ -142,7 +153,9 @@ const MainForm: FC = () =>{
                 }
 
             </div>
-
+                <ChatForm
+                    window="main"
+                />
             <div className={faundMod?"game_search hidden" : "game_search"} >
 
                 <div className="text_saerch">Game search</div>

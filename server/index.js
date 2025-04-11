@@ -31,13 +31,10 @@ let playersColor = []
 let moveColor = []
 let gamePlayers =[]
 let gameID = 0
-
+let inMainChat = []
 
 app.use(express.json())
 app.use('/api', router)
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'scripts')));
-app.use("/client", express.static(path.dirname(__dirname)+ "/client"))
 app.use(errorMiddleware)
 
 
@@ -49,9 +46,29 @@ app.get("/game", (request, response) =>{
 })
 
 io.on('connection', (socket) => {
+    socket.on("mainChatConnect", (id, name) =>{
+        console.log(id)
+        inMainChat.push(name)
+        inMainChat.push(id)
+        for(let i = 0; i < inMainChat.length/2; i++){
+            const user = io.sockets.sockets.get(inMainChat[i*2 +1])
+            user.emit("newMessage", ["sr", `${name} присоеденился!`])
+            console.log(inMainChat)
+        }
+    })
+    socket.on('sendMessage', (name, message, window) =>{
+        if(window == "main"){
+            const newMessage = [name, message]
+            for(let i = 0; i < inMainChat.length/2; i++){
+                const user = io.sockets.sockets.get(inMainChat[i*2 +1])
+                user.emit("newMessage", newMessage)
+                console.log(i)
+            }
+        }
+    })
     socket.on('playerReady', id =>{
         players.push(socket)
-        console.log(`user connected ${id}`, players, players.length);
+        console.log(`user ready ${id}`, players, players.length);
             if (players.length >= 2){
                 const player1 = players.shift();
                 const player2 = players.shift();
@@ -185,6 +202,17 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('User  disconnected:', socket.id);
         players = players.filter((id) => id !== socket)
+        if(inMainChat.indexOf(socket.id)!= -1){
+            const name = inMainChat[inMainChat.indexOf(socket.id)-1]
+            inMainChat = inMainChat.filter((id) => id !== socket.id)
+            inMainChat = inMainChat.filter((id) => id !== name)
+            for(let i = 0; i < inMainChat.length/2; i++){
+                const user = io.sockets.sockets.get(inMainChat[i*2 +1])
+                user.emit("newMessage", ["sr", `${name} пока!`])
+                console.log(inMainChat)
+            }
+        }
+        console.log(inMainChat)
     });
 })
 

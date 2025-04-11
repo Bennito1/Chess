@@ -1,0 +1,37 @@
+.chat_border{
+    position: absolute;
+    width: 490px;
+    height: 870px;
+    top: 179px;
+    margin-top: 60px;
+    margin-left: 32px;
+    background-color: rgb(83, 89, 176);
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+    border-top: 15px solid black;
+    border-bottom: 15px solid black;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+
+.mes_bord{
+    position: absolute;
+    width: 480px;
+    height: 690px;
+    margin: 5px;
+    top: 0;
+    left: 0;
+    background-color: aliceblue;
+}
+
+.int_bord{
+    position: absolute;
+    width: 480px;
+    height: 160px;
+    left: 0;
+    bottom: 0;
+    margin: 5px;
+    background-color: aquamarine;
+}

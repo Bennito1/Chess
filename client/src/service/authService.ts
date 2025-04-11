@@ -34,6 +34,7 @@ export default class AuthService {
             await $api.post('/logout', {token});
             localStorage.removeItem('accessToken')
             localStorage.removeItem('refreshToken')
+            localStorage.removeItem('name')
         } catch (error) {
             console.error('Ошибка при выходе:', error);
             throw error;
