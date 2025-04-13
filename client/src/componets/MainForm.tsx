@@ -8,7 +8,6 @@ import LoginForm from "./loginForm";
 import { socket } from "../App";
 import { mapStore } from "../store/mapStore";
 import "../styels/play_sound.css"
-import { v4 as uuidv4} from 'uuid'
 
 import useSound from 'use-sound'
 import ChatForm from "./ChatForm";
@@ -30,6 +29,65 @@ const MainForm: FC = () =>{
     const soundStF = require("../sound/wargoal_meloboom.mp3")
     const [playSound_StF] = useSound(soundStF, { volume: 0.7 })
 
+    
+    const main_Pony_music = require("../music/Pony_theme/The_Stars_Will_Aid_Her_Escape.mp3")
+    const main_SVO_music = require("../music/SVO_theme/AMOR_ED.mp3")
+    const [PlayMainPonyMusic, { stop: stopMPM }] = useSound(main_Pony_music, { volume: 0.15 })
+    const [PlayMainSVOMusic, { stop: stopMSM }] = useSound(main_SVO_music, { volume: 0.15 })
+    const [mainMusicState, setMainMusicState] = useState(false)
+    const [StatPlayMus, setStatPlayMus] = useState(true)
+    const [PonyState, setPonyState] = useState(true)
+    const [PlayerSettingsOp, setPlayerSettingsOp] = useState(true)
+
+    function playerOp(){
+        setPlayerSettingsOp(!PlayerSettingsOp)
+    }
+
+    function SwitchMusic(){
+        setMainMusicState(!mainMusicState)
+    }
+
+    function SwitchThemeMusic(){
+        setPonyState(!PonyState)
+        console.log("ueban")
+    }
+
+    function startMusMinPony(){
+        PlayMainPonyMusic()
+        setStatPlayMus(false)
+        console.log("PonyState",PonyState)
+        setTimeout(()=>{
+            if (PonyState == true){
+                stopMPM(), startMusMinPony(), console.log("PonyState",PonyState)
+            }
+        }, 10000/*195600*/)
+    }
+
+    function startMusMinSVO(){
+        PlayMainSVOMusic()
+        setStatPlayMus(false)
+        setTimeout(()=>{stopMSM(), startMusMinSVO()}, 132200)
+    }
+
+    if ((mainMusicState == true) && (StatPlayMus == true)){
+        if (PonyState == true){
+            startMusMinPony()
+        }
+        else {
+            startMusMinSVO()
+        }
+        console.log("PonyState",PonyState)
+        console.log("mainMusicState", mainMusicState)
+        console.log("StatPlayMus", StatPlayMus)
+    }
+    else if ((mainMusicState == false) && (StatPlayMus == false)){ 
+        stopMPM()
+        stopMSM()
+        setStatPlayMus(true)
+        console.log("mainMusicState", mainMusicState)
+        console.log("StatPlayMus", StatPlayMus)
+    }
+
     if(store.isAuth == true){
         localStorage.setItem("name", store.user.username)
     }
@@ -38,7 +96,7 @@ const MainForm: FC = () =>{
         }
         else{
             console.log(localStorage)
-            localStorage.setItem("name", ("user " + uuidv4()))
+            localStorage.setItem("name", ("user " + Math.floor(Math.random()*1000)))
         }
     }
     function hiddenNo (){
@@ -96,6 +154,16 @@ const MainForm: FC = () =>{
 
     return(
         <div>
+
+            <div className='player_mus_main' onClick={playerOp}></div>
+
+                <div className={PlayerSettingsOp?"hidden help_main_mus":"help_main_mus"}>
+                    <div className="circle_main_left"></div>
+                    <div className="circle_main_right"></div>
+                    <div className="but_switch_music" onClick={SwitchMusic}>play/stop</div>
+                    <div className="but_switch_theme_music" onClick={SwitchThemeMusic}>switch</div>
+            </div>
+            
             <button  onClick={() => {localStorage.removeItem("enemyName")}}>del enemyName</button>
             <div className="profile">
 

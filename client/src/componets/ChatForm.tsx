@@ -10,6 +10,15 @@ const ChatForm: FC<{ window: string }> = ({ window }) => {
     const [connectionState, setConnectionState] = useState<boolean>(false)
     const [valideError, setValideError] = useState<boolean>(false)
     const [errorMess, setErrorMess] = useState<string>("введите сообщение")
+    const [selectedSticker, setSelectedSticker] = useState<string | null>(null)
+
+    const brinza = require('../images/stikers/brinza.jpg')
+    const pony_1 = require('../images/stikers/pony_1.jpg')
+
+    const stickers = [
+        { id: 1, src: pony_1 },
+        { id: 2, src: brinza }
+    ]
 
     if(window == "main" && connectionState == false){
         connectMainChat()
@@ -46,35 +55,40 @@ const ChatForm: FC<{ window: string }> = ({ window }) => {
         setMessage('')
     }
 
+    function stickerSend(sticker:string){
+        socket.emit('sendMessage', localStorage.getItem("name"), sticker, window)
+    }
+
     function historyRender(){
+        console.log(messageHistory)
         const rows = []
         for(let i =0; i < ((messageHistory.length/2)); i++){
-            console.log(i, messageHistory.length, messageHistory)
-            if(messageHistory[i*2] == "sr"){
+            const sender = messageHistory[i * 2];
+            const content = messageHistory[i * 2 + 1]
+            if(sender == "sr"){
                 rows.push(
-                    <div>
-                        <div>{messageHistory[i*2 +1]}</div>
+                    <div className="messange">
+                        <div>{content}</div>
                     </div>
                 ) 
             }
-            else if(messageHistory[i*2] == localStorage.getItem("name")){
-                rows.push(
-                    <div>
-                        <div className="red">{messageHistory[i*2]}: {messageHistory[i*2 +1]}</div>
-                    </div>
-                )
-            }
             else{
+                const userMessage = sender == localStorage.getItem("name")
+                const isSticker = stickers.find(sticker => sticker.src == content)
+                const messageContent = isSticker ? (
+                    <img src={content} className="sticker" alt="Sticker" />
+                ) : (
+                    content
+                )
                 rows.push(
-                    <div>
-                        <div>{messageHistory[i*2]}: {messageHistory[i*2 +1]}</div>
+                    <div key={i} className={`messange ${isSticker ? "sticker-div" : ""} ${userMessage ? "red" : ""}`}>
+                        <div className ="">{sender}: {messageContent}</div>
                     </div>
                 )
             }
         }
         return rows
-    }
-
+}
     return(
         <div className="chat_border">
                 <div className="mes_bord">
@@ -100,6 +114,17 @@ const ChatForm: FC<{ window: string }> = ({ window }) => {
                     >
                         Отправить
                     </button>
+                    <div className="sticker-vale">
+                    {stickers.map(sticker => (
+                        <img
+                            key={sticker.id}
+                            src={sticker.src}
+                            alt={`Sticker ${sticker.id}`}
+                            onClick={() => {stickerSend(sticker.src)}}
+                            style={{ cursor: 'pointer', width: '50px', height: '50px' }}
+                        />
+                    ))}
+                </div>
                 </div>
         </div>
     )
