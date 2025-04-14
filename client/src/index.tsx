@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import Store from './store/store';
 import { createContext } from 'react'; 
-
+import MusicPlayer from './componets/MusicPlayer';
 interface State {
   store: Store;
 }

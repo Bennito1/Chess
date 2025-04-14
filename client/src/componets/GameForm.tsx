@@ -10,6 +10,7 @@ import TakeForm from "./TakeForm";
 import { mapStore } from "../store/mapStore";
 import CheckMate from "../gameScripts/mate"
 import Check from "../gameScripts/check";
+import useSound from "use-sound";
 
 const checkMate = new CheckMate
 const change = new Change
@@ -18,7 +19,8 @@ const check = new Check
 
 const GameForm: FC = () => {   
 
-    const {map, ID, gameColor, moveColor, setMap, setGameColor} = useMapContext()
+
+    const {map, ID, gameColor, moveColor, setMap} = useMapContext()
     const [valeFigure, setValeFigure] = useState<boolean>(false)
     const [stateVale, setVale] = useState<number[]>([])
     const [stateTake, setTake] = useState<number[]>([])
@@ -85,6 +87,7 @@ const GameForm: FC = () => {
             if(checkMate.checkMate() == true){
                 return(null)
             }
+            localStorage.removeItem("enemyName")
             console.log("мат")
             endGame()
         };
@@ -102,6 +105,7 @@ const GameForm: FC = () => {
         }
 
         const win = () =>{
+            localStorage.removeItem("enemyName")
             setGameEnd(true)
             if(mapStore.gameColor == "white"){
                 setHodStatus("Белые победили")

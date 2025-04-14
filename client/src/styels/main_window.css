@@ -25,6 +25,70 @@ html{
     background-color: aqua;
 }
 
+.but_switch_music{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    background-color: aliceblue;
+    position: absolute;
+    left: 50px;
+}
+
+.but_switch_theme_music{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    background-color: aliceblue;
+    position: absolute;
+    right: 50px;
+}
+
+.player_mus_main{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+.help_main_mus{
+    top: 24px;
+    right: 0;
+    width: 88px;
+    height: 62px;
+    margin-right: 126px;
+    background-color: red;
+    position: absolute;
+}
+
+.circle_main_left{
+    width: 62px;
+    height: 62px;
+    position: absolute;
+    left: -31px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.circle_main_right{
+    width: 62px;
+    height: 62px;
+    position: absolute;
+    right: -31px;
+    background-color: red;
+    border-radius: 50%;
+}
+
 
 body{
     width: 100%;
@@ -95,6 +159,7 @@ body{
 }
 
 .profile_mode{
+    z-index: 10;
     position: absolute;
     width: 300px;
     height: 400px;
