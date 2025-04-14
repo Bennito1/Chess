@@ -141,16 +141,6 @@
 }
 
 
-body{
-    overflow-x: hidden;
-}
-
-
-
-html{
-    background-color: #192434;
-}
-
 
 /* game window */
 
@@ -329,14 +319,7 @@ window_info_game{
     font-size: 20px;
 }
 
-body_but{
-    position: absolute;
-    width: 160px;
-    height: 440px;
-    left: 360px;
-    top: 5px;
 
-}
 
 .out_wind{
     position: absolute;

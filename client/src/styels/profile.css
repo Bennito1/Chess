@@ -7,6 +7,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     margin: 5px;
+    z-index: 12;
 }
 
 .help_bord{
@@ -311,4 +312,133 @@
     display: grid;
     place-items: center;
     font-size: 34px;
+}
+
+/*.all_game_stat{
+    position: absolute;
+    width: 300px;
+    height: 130px;
+    margin: 10px;
+    background-color: aqua;
+    top: 205px;
+    display: grid;
+    place-items: center;
+    font-size: 34px;
+    left: 320px;
+}*/
+
+@media (min-width: 1301px) and (max-width: 1920px) {
+   
+    .main_whindow{
+        width: 1600px;
+        height: 925px;
+       
+    }
+    
+    .help_bord{
+        width: 350px;
+        height: 925px;
+
+    }
+
+    .profile_but{
+        width: 330px;
+    }
+
+
+    .friends_but{
+        width: 330px;
+    }
+
+    .settings_but{
+        width: 330px;
+    }
+
+    .out_button{
+        width: 330px;
+    }
+
+
+    .fix_bord_chous{
+        width: 1250px;
+        left: 350px;
+    }
+
+    .profile_but_bord{
+        width: 330px;
+        left: 120px;
+    }
+
+    .game_history{
+        width: 330px;
+        left: 460px;
+
+    }
+
+    .rewards{
+        width: 330px;
+        left: 800px;
+    }
+
+    .friends_but_bord{
+        width: 330px;
+        left: 120px;
+    }
+
+    .masendges_but_bord{
+        width: 330px;
+        left: 460px;
+    }
+
+    .invite_friends{
+        width: 330px;
+        left: 800px;
+    }
+
+    .settings_but_bord{
+        width: 330px;
+        left: 285px;
+    }
+
+    .styles_but_bord{
+        width: 330px;
+        right: 285px;
+    }
+
+
+
+
+    .whindow_show{
+        width: 1170px;
+        height: 775px;
+        
+    }
+
+    .profile_bord{
+        width: 1170px;
+        height: 300px;
+    }
+
+    .icon_prof_Fb{
+    width: 150px;
+    height: 150px;
+    background-size: 150px 150px;
+    }
+
+    .prof_name_text{
+    width: 500px;
+    height: 170px;
+    margin-left: 180px;
+    font-size: 68px;
+    }
+
+    .mmr_text{
+    width: 250px;
+    height: 120px;
+    top: 160px;
+    font-size: 30px;
+    }
+
+
+
 }

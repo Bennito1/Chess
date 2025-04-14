@@ -37,8 +37,7 @@ const App: FC = ()=>{
 
   return (
     <Router>
-      <nav>
-      </nav>
+      
       <Routes>
       <Route path='/reg' element = {<RegMainForm/>}/>
         <Route path='*' element = {<ErrorForm/>}/>

@@ -30,7 +30,7 @@
 .MainReg{
     width: 600px;
     height: 800px;
-    background-color: #2d415e;
+    background-color: aqua;
     position: absolute;
     top: 50%;
     left: 50%; 
@@ -62,7 +62,7 @@
     height: 100px;
     text-align: center;
     font-size: 20px;
-    
+    color: white;
 }
 
 .li_2{
@@ -80,6 +80,7 @@
     height: 100px;
     text-align: center;
     font-size: 20px;
+    color: white;
 }
 
 .li_3{

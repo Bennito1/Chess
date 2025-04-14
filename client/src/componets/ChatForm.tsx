@@ -81,7 +81,7 @@ const ChatForm: FC<{ window: string }> = ({ window }) => {
                     content
                 )
                 rows.push(
-                    <div key={i} className={`messange ${isSticker ? "sticker-div" : ""} ${userMessage ? "red" : ""}`}>
+                    <div key={i} className={`messange ${isSticker ? "sticker-div" : ""} ${userMessage ? "mine" : ""}`}>
                         <div className ="">{sender}: {messageContent}</div>
                     </div>
                 )
@@ -108,7 +108,7 @@ const ChatForm: FC<{ window: string }> = ({ window }) => {
                         }}
                     ></input>
                     <button className ={
-                        valideError ? "red " : ""
+                        valideError ? "enter_but " : "enter_but"
                     }
                         onClick={() => sendMessage()}
                     >
