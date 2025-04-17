@@ -180,7 +180,7 @@ const MainForm: FC = () =>{
 
     function outBut(){
         playSound_but()
-        setTimeout(() => {setProfClous(false)}, 1000)
+        setTimeout(() => {setProfClous(false)}, 950)
         setProfOpen(true)
         setProfOpenClous(false)
         

@@ -27,6 +27,8 @@ const RegMainForm: FC = () =>{
     const [playSound_reg] = useSound(registSound)
   
     function getShowReq(){
+        store.setAuthError(false)
+        store.setRegError(false)
         setShowReq(!showReq)
         playSound_but()
     }

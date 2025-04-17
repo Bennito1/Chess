@@ -69,8 +69,6 @@ io.on('connection', (socket) => {
     socket.on('playerReady', id =>{
         players.push(socket) // перезаход надо 
         console.log(`user connected ${id}`, players, players.length);
-        players.push(socket)
-        console.log(`user ready ${id}`, players, players.length);
             if (players.length >= 2){
                 const player1 = players.shift();
                 const player2 = players.shift();

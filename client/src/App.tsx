@@ -10,7 +10,7 @@ import { mapStore } from './store/mapStore';
 import { io } from "socket.io-client";
 import RegMainForm from './componets/RegMainForm';
 import ProfileForm from './componets/ProfileForm';
-const URL = 'http://192.168.120.8:500'
+const URL = 'http://192.168.120.228:500'
 
 export const socket = io(`${URL}`)
 

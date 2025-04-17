@@ -68,7 +68,7 @@ export default class Store{
         }catch(e:any){
             this.setAuthError(true)
             if(e.code == 'ERR_BAD_REQUEST'){
-                this.setAuthMassengeError("неверное имя пользователя или пароль")
+                this.setAuthMassengeError(e.response.data.message)
             }
             else{
                 this.setAuthMassengeError("неизвестная ошибка")
@@ -82,13 +82,15 @@ export default class Store{
             localStorage.setItem('accessToken', response.data.accessToken)
             localStorage.setItem('refreshToken', response.data.refreshToken)
             this.setAuth(true)
+            this.setRegError(false)
             this.setUser(response.data.user)
         }catch(e:any){
+            this.setRegError(true)
             if(e.status == 400){
-                this.setAuthMassengeError(e.response.data.message)
+                this.setRegMassengeError(e.response.data.message)
             }
             else{
-                this.setAuthMassengeError("неизвестная ошибка")
+                this.setRegMassengeError("неизвестная ошибка")
             }
             console.log(e.status)
         }
@@ -113,6 +115,7 @@ export default class Store{
             this.setAuth(true);
             this.setUser(response.data.user)
         } catch (e) {
+            localStorage.removeItem("name")
             console.log(e);
         } finally {
             this.setLoading(false);
