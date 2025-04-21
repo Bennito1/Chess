@@ -24,6 +24,15 @@ const ChatForm: FC<{ window: string }> = ({ window }) => {
         connectMainChat()
     }
 
+    //if(window == "game" && connectionState == false){
+    //    connectGameChat()
+    //}
+
+    //function connectGameChat(){
+
+    //}
+
+
     function connectMainChat(){
         if(socket.id != null && connectionState == false){
             setConnectionState(true)

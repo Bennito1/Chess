@@ -37,16 +37,11 @@ app.use(express.json())
 app.use('/api', router)
 app.use(errorMiddleware)
 
-
-app.get("/", (request, response) =>{
-    response.sendFile(path.join(__dirname, 'public', "index.html" ))
-})
-app.get("/game", (request, response) =>{
-    response.sendFile(path.join(__dirname, 'public', "game.html" ))
-})
-
 io.on('connection', (socket) => {
     socket.on("mainChatConnect", (id, name) =>{
+        if(inMainChat.indexOf(name) != -1){
+            return(inMainChat[inMainChat.indexOf(name)+1] = id)
+        } 
         console.log(id)
         inMainChat.push(name)
         inMainChat.push(id)
