@@ -1,13 +1,13 @@
-create TABLE users(
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username varchar(20) UNIQUE,
-    password varchar(20) NOT NULL,
-    email text UNIQUE,
-    mmr integer,
-    isActivated boolean,
-    activationLinck text,
-    info text varchar(500),
-)
+    username VARCHAR(20) UNIQUE,
+    password VARCHAR NOT NULL,
+    email TEXT UNIQUE,
+    mmr INTEGER,
+    isActivated BOOLEAN,
+    activationLinck TEXT, 
+    info TEXT
+);
 
 CREATE TABLE freands{
     freandId_1 integer,
