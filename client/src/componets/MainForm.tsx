@@ -240,11 +240,12 @@ const MainForm: FC = () =>{
         setSettingsState(true)
     }    
     
+    //<button onClick={() => {localStorage.removeItem("enemyName"), console.log(localStorage)}}>Удоли</button>
 
     return(
 
         <div>
-            <button onClick={() => {localStorage.removeItem("enemyName"), console.log(localStorage)}}>Удоли</button>
+            
             <div className='player_mus_main' onClick={playerOp}></div>
 
             <div className={PlayerSettingsOp?"hidden help_main_mus":"help_main_mus"}>

@@ -154,8 +154,8 @@
     align-items: center;
     transition: background-color 0.3s ease;
     border: 0px;
-
 }
+
 .vale:hover{
 
     transform: scale(1.1); 
@@ -453,6 +453,21 @@ body_but{
         width: 50px;
         height: 50px;
         background: none;
+    }
+
+    .take_size{
+        width: 50px;
+        height: 50px;
+    }
+
+    .take{
+        width: 15px;
+        height: 15px; 
+    }
+
+    .vale{
+        width: 15px;
+        height: 15px; 
     }
     
 }   

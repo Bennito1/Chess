@@ -81,16 +81,16 @@
 @media (min-width: 1301px) and (max-width: 1920px) {
     
     .chat_border{
-        width: 394px;
-        height: 700px;
+        width: 294px;
+        height: 500px;
         top: 150px;
         margin-top: 40px;
         margin-left: 18px;
     }
     
     .mes_bord{
-        width: 370px;
-        height: 540px;
+        width: 270px;
+        height: 340px;
         margin: 5px;
         top: 20px;
         left: 8px;
@@ -98,7 +98,7 @@
     
     .int_bord{
         position: absolute;
-        width: 380px;
+        width: 280px;
         height: 120px;
         left: 0;
         bottom: 0;
@@ -136,14 +136,14 @@
         display: grid;
         place-items: end;
         background-color: green;
-        width: 359px;
+        width: 259px;
         clear: both;
         margin-bottom: 5px;
     }
 
     .input_masendge{
         position: absolute;
-        width: 280px;
+        width: 180px;
         height: 20px;
         user-select: none;
     }
@@ -152,7 +152,7 @@
         position: absolute;
         width: 100px;
         height: 24px;
-        margin-left: 280px;
+        margin-left: 180px;
         border: 2px solid black;
         user-select: none;
     }
